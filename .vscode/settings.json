@@ -4,6 +4,8 @@
   "files.associations": {
     "stdio.h": "c",
     "string.h": "c",
-    "stdlib.h": "c"
-  }
+    "stdlib.h": "c",
+    "89c52.h": "c",
+    "89C52.H": "cpp"
+}
 }
