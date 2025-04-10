@@ -1,4 +1,4 @@
-#include <REGX52.H>
+#include "89C52.h"
 
 // 引脚配置：
 sbit LCD_RS = P2 ^ 6;
