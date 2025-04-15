@@ -3,6 +3,7 @@
 ![image-20250303182305574](assets/image-20250303182305574.png)
 
 
+![引脚](assets/引脚.png)
 
 ### 系统架构
 
@@ -61,18 +62,101 @@
    // 1.开启端口时钟
    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); // 启用或禁用高速APB（APB 2）外围设备时钟。
    
-   // 初始化GPIO 配置50MHZ GPIO为推挽模式
+   // 2.初始化GPIO 配置50MHZ GPIO为推挽模式
    GPIO_InitTypeDef gpio_initstruct; // 结构体初始化
    gpio_initstruct.GPIO_Pin   = GPIO_Pin_1;
    gpio_initstruct.GPIO_Mode  = GPIO_Mode_Out_PP;
    gpio_initstruct.GPIO_Speed = GPIO_Speed_50MHz;
    while(1)
    {
-       // 设置端口值
+       // 3.设置端口值
        GPIO_SetBits(GPIOA, GPIO_Pin_1); // 置高电平
        Delay_ms(200);
        GPIO_ResetBits(GPIOA, GPIO_Pin_1);// 置低电平
    }
    ```
+5. 按键信息读取
+    ```
+    GPIO_ReadInputDataBit(); // 读取输入信息
+    ```
+6. 中断
+    ```C
+    // 1. 使能相关端口时钟 & AFIO
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
+    
+    // 2. 配置端口模式
+    GPIO_InitTypeDef GPIO_InitStructure = {0};
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2; // PA0(A相), PA1(B相), PA2(按键)
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; // 上拉输入(根据硬件设计选择)
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    
+    // 3. 映射GPIO和AFIO
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0); // PA0 -> EXTI0
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource2); // PA2 -> EXTI2
+    
+    // 4. EXTI外部中断配置
+    EXTI_InitTypeDef EXTI_InitStructure = {0};
+    
+    // 编码器A相(PA0)配置：双边沿触发
+    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling; // 双边沿
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+    
+    // 编码器按键(PA2)配置：下降沿触发
+    EXTI_InitStructure.EXTI_Line = EXTI_Line2;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; // 按键按下时下降沿
+    EXTI_Init(&EXTI_InitStructure);
+    
+    // 5. 配置NVIC中断优先级
+    NVIC_InitTypeDef NVIC_InitStructure = {0};
+    // EXTI0中断(编码器A相)
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+    
+    // EXTI2中断(编码器按键)
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;
+    NVIC_Init(&NVIC_InitStructure);
+    
+    // 6. 编写中断子程序
+    // EXTI0中断服务函数 - 处理编码器旋转
+    void EXTI0_IRQHandler(void) {
+        if(EXTI_GetITStatus(EXTI_Line0) != RESET) {
+            // 读取B相状态判断方向
+            uint8_t b_state = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_1);
+            if(b_state) {
+                encoderCount--; // B相为高时逆时针
+            } else {
+                encoderCount++; // B相为低时顺时针
+            }
+            EXTI_ClearITPendingBit(EXTI_Line0); // 清除中断标志
+        }
+    }
+    
+    // EXTI2中断服务函数 - 处理编码器按键
+    void EXTI2_IRQHandler(void) {
+        if(EXTI_GetITStatus(EXTI_Line2) != RESET) {
+            encoderButtonPressed = 1;
+            EXTI_ClearITPendingBit(EXTI_Line2);
+        }
+    }
+    ```
+7. 定时器
 
-   
+    1. 定时器分类
+    2. 时基单元工作流程
+        - 进入预分频器（PSC）,对内部的72MHz的时钟进行分频，实际的分频值 = 预分频值 + 1
+        - 计数器计数，分为向上计数，向下计数，中央对齐计数
+        - 自动重装初始值
+
+    | 编号       | 类型       | 总线 | 功能                                                         |
+    | ---------- | ---------- | ---- | ------------------------------------------------------------ |
+    | TIM1、8    | 高级定时器 | APB2 | 拥有通用定时器全部功能，并额外具有重复计数器、死区生成、互补输出、刹车输入等功能 |
+    | TIM2,3,4,5 | 通用定时器 | APB1 | 拥有基本定时器全部功能，并额外具有内外时钟源选择、输入捕获、输出比较、编码器接口、主从触发模式等功能 |
+    | TIM6,7     | 基本定时器 | APB1 | 拥有定时中断、主模式触发DAC的功能                            |
+
+    

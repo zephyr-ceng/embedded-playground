@@ -12,12 +12,12 @@
 
 int main(void)
 {
-    uint16_t number=0;
+    int16_t number=0;
     OLED_Init();
     EC11_Init();
     OLED_ShowString(1,1,"Count:");
     while (1) {
-        number =EC_Count_Get();
+        number +=EC_Count_Get(); // 每触发一次加 1
         OLED_ShowSignedNum(2,1,number,6);
     }
 }

@@ -6,6 +6,7 @@
     "string.h": "c",
     "stdlib.h": "c",
     "89c52.h": "c",
-    "89C52.H": "cpp"
+    "89C52.H": "cpp",
+    "stm32f10x.h": "c"
 }
 }
