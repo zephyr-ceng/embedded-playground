@@ -20,8 +20,7 @@ int main(void)
     OLED_ShowString(1, 1, "num:"); // 第一行第三列开始显示字符串hello word！
 
     while (1) {
-        num += encoder_get();
+        num = encoder_get();
         OLED_ShowSignedNum(2, 2, num, 4);
-        Delay_ms(50);
     }
 }
