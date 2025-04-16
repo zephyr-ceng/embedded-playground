@@ -355,7 +355,7 @@ uint16_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx)
   *   This parameter can be any combination of GPIO_Pin_x where x can be (0..15).
   * @retval None
   */
-void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+ void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 {
   /* Check the parameters */
   assert_param(IS_GPIO_ALL_PERIPH(GPIOx));

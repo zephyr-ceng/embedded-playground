@@ -1,59 +1,69 @@
 # STM32F103C8T6
 
-![image-20250303182305574](assets/image-20250303182305574.png)
+## STM32引脚图
 
 
 ![引脚](assets/引脚.png)
 
-### 系统架构
+
+
+## 系统架构
 
 **系统结构：四个驱动单元（DC Code总线Dbus, 系统总线Sbus，DMA1, DMA2）四个被动单元（SRAM,内部闪存存储器，FSMC, AHB到APB桥--连接APB设备）**
 
 **互联网结构：五个驱动单元（D-bus, Sbus,DMA1, DMA2, 以太网DMA），三个被动单元（SRAM,内部闪存存储器，AHB到APB桥--连接APB设备）**
 
-### GPIO
+![image-20250303182305574](assets/image-20250303182305574.png)
 
-1. 由上图可知：GPIO通过APB2总线连接，采用32位编码，高16位未使用，其基本结构为
+## GPIO
+
+1. ### 由上图可知：GPIO通过APB2总线连接，采用32位编码，高16位未使用，其基本结构为
 
    ![image-20250303183335931](assets/image-20250303183335931.png)
 
-2. GPIO的8种端口模式
+2. ### GPIO的8种端口模式
 
-   ![image-20250303184222933](assets/image-20250303184222933.png)
-
-   
-
-   **对应GPIO.H文件中：**
+   **对应 “ gpio.h ” 文件中：**
 
    ```C
    typedef enum
    { 
-     GPIO_Mode_AIN = 0x00, // 模拟输入
-     GPIO_Mode_IN_FLOATING = 0x04,// 浮空输入
-     GPIO_Mode_IPD = 0x28, // 下拉输入
-     GPIO_Mode_IPU = 0x48, // 上拉输入
+     GPIO_Mode_AIN = 0x00, // 模拟输入，GPIO无效，引脚直接接入内部ADC
+     GPIO_Mode_IN_FLOATING = 0x04,// 浮空输入，可读取引脚电平，若引脚悬空，则电平不确定
+     GPIO_Mode_IPD = 0x28, // 下拉输入，可读取引脚电平，内部连接下拉电阻，悬空时默认低电平
+     GPIO_Mode_IPU = 0x48, // 上拉输入，可读取引脚电平，内部连接上拉电阻，悬空时默认高电平
      GPIO_Mode_Out_OD = 0x14, // 开漏输出，高电平无驱动，低电平有输出驱动能力
      GPIO_Mode_Out_PP = 0x10, // 推挽输出，高低电平均有驱动能力
-     GPIO_Mode_AF_OD = 0x1C, // 复用开漏输出
-     GPIO_Mode_AF_PP = 0x18 // 复用推挽输出
+     GPIO_Mode_AF_OD = 0x1C, // 复用开漏输出，可输出引脚电平，高电平为高阻态，低电平接VSS
+     GPIO_Mode_AF_PP = 0x18 // 复用推挽输出，可输出引脚电平，高电平接VDD,低电平接VSS
    }GPIOMode_TypeDef;
    ```
 
-3. 常用函数
+3. LED
 
-   ```
-   RCC_APB2PeriphClockCmd(); // 启用或禁用低速APB（APB 2）外围设备时钟
-   RCC_AHBPeriphClockCmd(); // 仅在睡眠模式期间才能禁用静态存储器和FLITF时钟
-   RCC_APB1PeriphClockCmd(); // 启用或禁用低速APB（APB 1）外围设备时钟
-   
-   GPIO_Init(); // 初始化GPIO
-   GPIO_SetBits(); // 高电平
-   GPIO_ReSetBits(); // 低电平
-   GPIO_WriteBit(); // bit_Set高或者bit_ReSet低， 
-   GPIO_Write(); // 控制多个端口
-   ```
+    - 需要了解GPIO的输入和输出
 
-   
+    - 常用函数
+
+      ```C
+      // 时钟使能
+      void RCC_APB2PeriphClockCmd(uint32_t RCC_APB2Periph, FunctionalState NewState); // APB2内部时钟
+      void RCC_APB1PeriphClockCmd(uint32_t RCC_APB1Periph, FunctionalState NewState); // APB1时钟
+      void RCC_AHBPeriphClockCmd(uint32_t RCC_AHBPeriph, FunctionalState NewState); // AHB时钟使能
+      
+      // GPIO初始化
+      GPIO_InitTypeDef gpio_initstruct; // 结构体
+      gpio_initstruct.GPIO_Pin   = GPIO_Pin_1; // 引脚
+      gpio_initstruct.GPIO_Mode  = GPIO_Mode_Out_PP; // 输出模式
+      gpio_initstruct.GPIO_Speed = GPIO_Speed_50MHz; // 速度
+      void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct) // 初始化GPIO
+      
+      // 引脚设置
+      void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin); // 高电平
+      void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin); // 低电平
+      void GPIO_WriteBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, BitAction BitVal); // BitVal 值： bit_Set高或者bit_ReSet低， 
+      void GPIO_Write(GPIO_TypeDef* GPIOx, uint16_t PortVal); // 控制多个端口
+      ```
 
 4. 点灯
 
@@ -62,10 +72,10 @@
    // 1.开启端口时钟
    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); // 启用或禁用高速APB（APB 2）外围设备时钟。
    
-   // 2.初始化GPIO 配置50MHZ GPIO为推挽模式
+   // 2.初始化GPIO
    GPIO_InitTypeDef gpio_initstruct; // 结构体初始化
    gpio_initstruct.GPIO_Pin   = GPIO_Pin_1;
-   gpio_initstruct.GPIO_Mode  = GPIO_Mode_Out_PP;
+   gpio_initstruct.GPIO_Mode  = GPIO_Mode_Out_PP; // 推挽输出
    gpio_initstruct.GPIO_Speed = GPIO_Speed_50MHz;
    while(1)
    {
@@ -75,16 +85,45 @@
        GPIO_ResetBits(GPIOA, GPIO_Pin_1);// 置低电平
    }
    ```
-5. 按键信息读取
+
+5. GPIO端口检测
+    ```C
+    uint8_t GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin); // 端口输入检测
+    uint16_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx); // 多端口输入检测
+    uint8_t GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin); // 端口输出检测
+    uint16_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx); // 多端口输出检测
     ```
-    GPIO_ReadInputDataBit(); // 读取输入信息
+
+6. EXTI外部中断流程和相关函数
+
+    ![image-20250416193401902](assets/image-20250416193401902.png)
+
+    - 基本概念：STM32支持19个外部中断，0~15为IO端口输入中断，16-PVD电压监测, 17-RTC闹钟,18-USB唤醒，19-以太网端口（互联网性）
+    - 0~15个IO端口分配至EXTI0~EXTI15，为了对应线和中断所以需要做映射：`void GPIO_EXTILineConfig(uint8_t GPIO_PortSource, uint8_t GPIO_PinSource)`
+    - 映射后设置中断的初始化，分别包含标志位（EXTI_Line）、模式选择（EXTI_Mode）、触发方式(上升沿、下降沿、双边沿)、中断有效控制，`void EXTI_Init(EXTI_InitTypeDef* EXTI_InitStruct);`
+    - 中断可能同时触发，所以需要设置优先级（NVIC）
+
+    
+
+    ```C
+    /* EXTI 外部中断流程
+    1.使能APB2时钟（GPIO和AFIO）
+    2.GPIO初始化
+    3.映射GPIO至AFIO
+    4.中断初始化
+    5.NVIC优先级配置
+    */
+    
+    
     ```
-6. 中断
+
+    
+
     ```C
     // 1. 使能相关端口时钟 & AFIO
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
     
-    // 2. 配置端口模式
+    // 2. GPIO初始化
     GPIO_InitTypeDef GPIO_InitStructure = {0};
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2; // PA0(A相), PA1(B相), PA2(按键)
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; // 上拉输入(根据硬件设计选择)
@@ -94,7 +133,7 @@
     GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0); // PA0 -> EXTI0
     GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource2); // PA2 -> EXTI2
     
-    // 4. EXTI外部中断配置
+    // 4. EXTI外部中断初始化
     EXTI_InitTypeDef EXTI_InitStructure = {0};
     
     // 编码器A相(PA0)配置：双边沿触发
@@ -115,7 +154,7 @@
     NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; 
     NVIC_Init(&NVIC_InitStructure);
     
     // EXTI2中断(编码器按键)
@@ -145,6 +184,7 @@
         }
     }
     ```
+
 7. 定时器
 
     1. 定时器分类
@@ -159,4 +199,7 @@
     | TIM2,3,4,5 | 通用定时器 | APB1 | 拥有基本定时器全部功能，并额外具有内外时钟源选择、输入捕获、输出比较、编码器接口、主从触发模式等功能 |
     | TIM6,7     | 基本定时器 | APB1 | 拥有定时中断、主模式触发DAC的功能                            |
 
-    
+
+8. 外设
+   - EC11 编码器
+   - 原理：
