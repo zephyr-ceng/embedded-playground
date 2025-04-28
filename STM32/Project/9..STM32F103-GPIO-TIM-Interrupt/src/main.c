@@ -18,17 +18,8 @@ int main(void)
     OLED_Init();
     Timer_Init();
     while (1) {
-        // num = Get_Value();
+        num = Get_Value();
         OLED_ShowNum(2, 2, num, 4);
-        OLED_ShowNum(3,2,TIM_GetCounter(TIM6),6);
-    }
-}
-
-// Handler函数
-void TIM6_IRQHandler()
-{
-    if (TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET) {
-        num++;
-        TIM_ClearITPendingBit(TIM6, TIM_IT_Update);
+        OLED_ShowNum(3,2,TIM_GetCounter(TIM4),6);
     }
 }
