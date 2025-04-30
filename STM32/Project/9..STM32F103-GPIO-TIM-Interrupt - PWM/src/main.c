@@ -15,11 +15,22 @@ uint16_t num;
 int main(void)
 {
     
-    OLED_Init();
     TIM4_Init();
     while (1) {
-        // num = Get_Value();
-        // OLED_ShowNum(2, 2, num, 4);
-        OLED_ShowNum(3,2,TIM_GetCounter(TIM4),6);
+        // i 代表CCR占空比变化
+        for ( i = 0; i < 100; i++)
+        {
+            PWM_SetCompare2(i);
+            Delay_ms(10);
+        }
+
+        for ( i = 0; i < 100; i++)
+        {
+            TIM4_PWM_SetCompare2(100-i);
+            Delay_ms(10);
+        }
+        
+        
+
     }
 }
