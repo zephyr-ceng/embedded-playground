@@ -7,7 +7,8 @@
 #ifndef __TIM4_1KHz_H__
 #define __TIM4_1KHz_H__
 
-void TIM4_PWM_Init(uint16_t prescaler, uint16_t period);
-void TIM4_PWM_SetCompare2(uint16_t Compare2);
+void TIM2_CH3_PWM_Init();
+void TIM2_CH3_PWM_SetCompare3(uint16_t Compare2);
+void breathing_LED(void);
 
 #endif // !__TIM4_1KHz_H__
