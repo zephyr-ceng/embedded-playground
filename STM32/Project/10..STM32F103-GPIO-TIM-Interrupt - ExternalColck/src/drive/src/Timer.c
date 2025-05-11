@@ -45,9 +45,6 @@ void TIM4_IRQHandler()
     }
 }
 
-void Interrupt_Update_Count(){
-    
-}
 uint16_t Get_Value()
 {
     return Timer_Count_Number;
