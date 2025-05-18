@@ -10,17 +10,16 @@
 #include "./drive/inc/OLED.h"
 #include "./drive/inc/Xunji.h"
 
-uint16_t num;
-
+int64_t Count_Value=0;
 int main(void)
 {
     
     OLED_Init();
-    TIM2_ETR_Config();
+    TIM1_ETR_ExternalClock2_Overflow_Config();
     OLED_ShowString(1,1,"Count Value:");
     while (1) {
-        num = Read_Pulse_Width();
-        OLED_ShowNum(2, 2, num, 6);
-        OLED_ShowNum(3,2,TIM_GetCounter(TIM2),6);
+        Count_Value = Get_Overflow_value();
+        OLED_ShowNum(2,1,TIM_GetCounter(TIM1),6);
+        OLED_ShowNum(3,1,Count_Value,6);
     }
 }
