@@ -1,5 +1,5 @@
 /****************
- *@description: 旋转编码器-OLED数字加减
+ *@description: TIM1-ETR EternalClock2 - PA12 循迹模块计数
  *@author: zephyr
  *@date: 2025-03-26 22:29:32
  *@version: V1.0.0
@@ -19,7 +19,7 @@ int main(void)
     OLED_ShowString(1,1,"Count Value:");
     while (1) {
         Count_Value = Get_Overflow_value();
-        OLED_ShowNum(2,1,TIM_GetCounter(TIM1),6);
         OLED_ShowNum(3,1,Count_Value,6);
+        OLED_ShowNum(2,1,TIM_GetCounter(TIM1),6);
     }
 }

@@ -18,7 +18,7 @@ void Timer_Init(void)
     // 要设置1Hz = 72MHz/[(PSC+1)*(ARR+1)
     TIM_TimeBaseStructure.TIM_Prescaler         = 7200 - 1;  // PSC
     TIM_TimeBaseStructure.TIM_Period            = 10000 - 1; // ARR
-    TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;         // 重复计数器设置
+    // TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;         // 重复计数器设置 高级计数器
     TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
 
     TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE); // 使能中断

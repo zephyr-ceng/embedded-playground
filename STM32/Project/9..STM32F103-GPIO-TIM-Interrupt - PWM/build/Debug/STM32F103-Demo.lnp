@@ -1,1 +1,0 @@
--mthumb -mcpu=cortex-m3 -T "c:/Ubuntu/Cpp/STM32/Project/9..STM32F103-GPIO-TIM-Interrupt - PWM/stm32f1x_64KB_flash.ld" -Wl,--print-memory-usage --specs=nosys.specs --specs=nano.specs -Wl,--gc-sections -Wl,-Map=./build/Debug/STM32F103-Demo.map

@@ -1,5 +1,5 @@
 /****************
- *@description: 旋转编码器-OLED数字加减
+ *@description: TIM4基础计数器 - 旋转编码器
  *@author: zephyr
  *@date: 2025-03-26 22:29:32
  *@version: V1.0.0

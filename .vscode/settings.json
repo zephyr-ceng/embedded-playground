@@ -7,6 +7,7 @@
     "stdlib.h": "c",
     "89c52.h": "c",
     "89C52.H": "cpp",
-    "stm32f10x.h": "c"
+    "stm32f10x.h": "c",
+    "timer.h": "c"
 }
 }
