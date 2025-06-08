@@ -1,0 +1,1746 @@
+[2025-03-04 16:34:20]	[info] incremental build: 13 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\src\misc.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\src\stm32f10x_spi.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\hal\STM32F10x_StdPeriph_Driver\system_stm32f10x.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\MyDelay.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\startup_stm32f10x_md.s': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\stm32f10x_it.c': object (.o) file not exist
+
+[2025-03-04 16:34:23]	[done]
+	build successfully !
+
+[2025-03-04 16:35:48]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 16:35:49]	[done]
+	build successfully !
+
+[2025-03-04 16:36:26]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 16:36:27]	[done]
+	build successfully !
+
+[2025-03-04 16:37:22]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 16:37:23]	[done]
+	build successfully !
+
+[2025-03-04 16:56:26]	[info] incremental build: 3 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\src\key.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\src\led.c': object (.o) file not exist
+
+[2025-03-04 16:56:27]	[done]
+	build successfully !
+
+[2025-03-04 17:40:27]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 17:40:27]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:19: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:16: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:41:17]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 17:41:17]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:19: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:16: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:44:24]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 17:44:24]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:18: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:15: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:45:19]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 17:45:19]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:18: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:15: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:48:19]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 17:48:19]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:18: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:15: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:49:17]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': dependence 'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\inc\key.h' has been changed.
+
+[2025-03-04 17:49:17]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:18: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:15: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:49:53]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:18: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:15: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:50:52]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:18: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:15: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:53:06]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:9: undefined reference to `LED_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:10: undefined reference to `Button_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:13: undefined reference to `Key_CheckNum'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:18: undefined reference to `LED_Toggle'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/main.c:15: undefined reference to `LED_Toggle'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:         852 B       128 KB      0.65%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 17:54:21]	[info] incremental build: 3 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 17:54:21]	compilation failed at : "e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/key.o -MMD ./src/drive/key.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/key.c:1:10: fatal error: ./inc/key.h: No such file or directory
+    1 | #include "./inc/key.h"
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+
+[2025-03-04 17:54:44]	[info] incremental build: 3 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 17:54:44]	compilation failed at : "e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/key.o -MMD ./src/drive/key.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/key.c: In function 'Key_CheckNum':
+./src/drive/key.c:27:5: error: expected expression before '}' token
+   27 |     }
+      |     ^
+./src/drive/key.c:33:5: error: expected expression before '}' token
+   33 |     }
+      |     ^
+
+[2025-03-04 17:55:03]	[info] incremental build: 3 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.c': object (.o) file not exist
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 17:55:04]	[done]
+	build successfully !
+
+[2025-03-04 17:57:06]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 17:57:06]	compilation failed at : "e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/key.o -MMD ./src/drive/key.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/key.c: In function 'Key_CheckNum':
+./src/drive/key.c:35:5: error: expected declaration or statement at end of input
+   35 |     return KeyNum;
+      |     ^~~~~~
+
+[2025-03-04 17:57:35]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 17:57:35]	compilation failed at : "e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/key.o -MMD ./src/drive/key.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/key.c: In function 'Key_CheckNum':
+./src/drive/key.c:35:5: error: expected declaration or statement at end of input
+   35 |     return KeyNum;
+      |     ^~~~~~
+
+[2025-03-04 17:58:03]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 17:58:03]	[done]
+	build successfully !
+
+[2025-03-04 17:58:45]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 17:58:45]	[done]
+	build successfully !
+
+[2025-03-04 18:14:01]	[info] incremental build: 3 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.c': source file has been changed.
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': dependence 'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.h' has been changed.
+
+[2025-03-04 18:14:02]	[done]
+	build successfully !
+
+[2025-03-04 18:16:41]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.c': source file has been changed.
+
+[2025-03-04 18:16:42]	[done]
+	build successfully !
+
+[2025-03-04 18:17:31]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.c': source file has been changed.
+
+[2025-03-04 18:17:32]	[done]
+	build successfully !
+
+[2025-03-04 18:17:35]	[done]
+	build successfully !
+
+[2025-03-04 18:18:14]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.c': source file has been changed.
+
+[2025-03-04 18:18:15]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/drive/led.o: in function `LED_Init':
+e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY/./src/drive/led.c:15: undefined reference to `GPIO_setBits'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:        1420 B       128 KB      1.08%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-04 18:18:24]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\led.c': source file has been changed.
+
+[2025-03-04 18:18:25]	[done]
+	build successfully !
+
+[2025-03-04 18:20:49]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 18:20:50]	[done]
+	build successfully !
+
+[2025-03-04 18:21:45]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 18:21:45]	[done]
+	build successfully !
+
+[2025-03-04 18:22:09]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 18:22:10]	[done]
+	build successfully !
+
+[2025-03-04 18:27:56]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 18:27:57]	[done]
+	build successfully !
+
+[2025-03-04 18:29:54]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 18:29:54]	[done]
+	build successfully !
+
+[2025-03-04 18:30:18]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 18:30:18]	[done]
+	build successfully !
+
+[2025-03-04 18:31:42]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 18:31:43]	[done]
+	build successfully !
+
+[2025-03-04 18:32:31]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 18:32:32]	[done]
+	build successfully !
+
+[2025-03-04 18:32:51]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 18:32:52]	[done]
+	build successfully !
+
+[2025-03-04 18:33:52]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+
+[2025-03-04 18:33:53]	[done]
+	build successfully !
+
+[2025-03-04 18:34:34]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 18:34:35]	[done]
+	build successfully !
+
+[2025-03-04 18:35:18]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\drive\key.c': source file has been changed.
+'e:\32\Project\2.STM32F103-GPIO-Key\STM32F103-GPIO-KEY\src\main.c': source file has been changed.
+
+[2025-03-04 18:35:19]	[done]
+	build successfully !
+
+[2025-03-27 22:01:01]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:01:01]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from src/stm32f10x_conf.h:39,
+                 from hal/STM32F10x_StdPeriph_Driver/stm32f10x.h:8297,
+                 from ./src/main.c:8:
+./src/main.c: In function 'GPIO_Init_KEY2':
+hal/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h:142:36: warning: conversion from 'short unsigned int' to 'GPIOMode_TypeDef' changes value from '32768' to '0' [-Woverflow]
+  142 | #define GPIO_Pin_15                ((uint16_t)0x8000)  /*!< Pin 15 selected */
+      |                                    ^
+./src/main.c:67:34: note: in expansion of macro 'GPIO_Pin_15'
+   67 |     gpio_initstruct.GPIO_Mode  = GPIO_Pin_15;
+      |                                  ^~~~~~~~~~~
+./src/main.c: In function 'GPIO_Init_KEY3':
+hal/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h:140:36: warning: conversion from 'short unsigned int' to 'GPIOMode_TypeDef' changes value from '8192' to '0' [-Woverflow]
+  140 | #define GPIO_Pin_13                ((uint16_t)0x2000)  /*!< Pin 13 selected */
+      |                                    ^
+./src/main.c:78:34: note: in expansion of macro 'GPIO_Pin_13'
+   78 |     gpio_initstruct.GPIO_Mode  = GPIO_Pin_13;
+      |                                  ^~~~~~~~~~~
+./src/main.c: In function 'key_Scan':
+./src/main.c:96:58: error: expected ')' before ';' token
+   96 |         while (GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0==0);
+      |               ~                                          ^
+      |                                                          )
+./src/main.c:99:5: error: expected expression before '}' token
+   99 |     }
+      |     ^
+./src/main.c:102:59: error: expected ')' before ';' token
+  102 |         while (GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_15==0);
+      |               ~                                           ^
+      |                                                           )
+./src/main.c:105:5: error: expected expression before '}' token
+  105 |     }
+      |     ^
+./src/main.c:108:59: error: expected ')' before ';' token
+  108 |         while (GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13==0);
+      |               ~                                           ^
+      |                                                           )
+./src/main.c:111:5: error: expected expression before '}' token
+  111 |     }
+      |     ^
+
+[2025-03-27 22:02:03]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:02:04]	[done]
+	build successfully !
+
+[2025-03-27 22:03:30]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:03:32]	[done]
+	build successfully !
+
+[2025-03-27 22:05:16]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:05:17]	[done]
+	build successfully !
+
+[2025-03-27 22:12:27]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:12:28]	[done]
+	build successfully !
+
+[2025-03-27 22:12:37]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:12:38]	[done]
+	build successfully !
+
+[2025-03-27 22:13:15]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:13:16]	[done]
+	build successfully !
+
+[2025-03-27 22:16:48]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:16:49]	[done]
+	build successfully !
+
+[2025-03-27 22:21:33]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:21:34]	[done]
+	build successfully !
+
+[2025-03-27 22:22:19]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:22:20]	[done]
+	build successfully !
+
+[2025-03-27 22:23:08]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:23:08]	[done]
+	build successfully !
+
+[2025-03-27 22:23:18]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:23:19]	[done]
+	build successfully !
+
+[2025-03-27 22:23:31]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:23:33]	[done]
+	build successfully !
+
+[2025-03-27 22:24:53]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:24:53]	[done]
+	build successfully !
+
+[2025-03-27 22:30:54]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:30:55]	[done]
+	build successfully !
+
+[2025-03-27 22:31:18]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:31:19]	[done]
+	build successfully !
+
+[2025-03-27 22:31:45]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:31:45]	[done]
+	build successfully !
+
+[2025-03-27 22:36:57]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:36:58]	[done]
+	build successfully !
+
+[2025-03-27 22:39:17]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:39:18]	[done]
+	build successfully !
+
+[2025-03-27 22:39:43]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\led.h' has been changed.
+
+[2025-03-27 22:39:45]	[done]
+	build successfully !
+
+[2025-03-27 22:40:04]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:40:05]	[done]
+	build successfully !
+
+[2025-03-27 22:40:32]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\led.h' has been changed.
+
+[2025-03-27 22:40:33]	[done]
+	build successfully !
+
+[2025-03-27 22:41:05]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:41:06]	[done]
+	build successfully !
+
+[2025-03-27 22:42:04]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:42:04]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from src/stm32f10x_conf.h:39,
+                 from hal/STM32F10x_StdPeriph_Driver/stm32f10x.h:8297,
+                 from ./src/main.c:8:
+./src/./drive/led.h: In function 'GPIO_Init_LED':
+hal/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h:129:36: error: called object is not a function or function pointer
+  129 | #define GPIO_Pin_2                 ((uint16_t)0x0004)  /*!< Pin 2 selected */
+      |                                    ^
+./src/./drive/led.h:11:47: note: in expansion of macro 'GPIO_Pin_2'
+   11 |     gpio_initstruct.GPIO_Pin   = GPIO_Pin_1 | GPIO_Pin_2 GPIO_Pin_3;
+      |                                               ^~~~~~~~~~
+
+[2025-03-27 22:42:13]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:42:14]	[done]
+	build successfully !
+
+[2025-03-27 22:42:50]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:42:51]	[done]
+	build successfully !
+
+[2025-03-27 22:43:29]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:43:30]	[done]
+	build successfully !
+
+[2025-03-27 22:44:46]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:44:47]	[done]
+	build successfully !
+
+[2025-03-27 22:44:54]	[done]
+	build successfully !
+
+[2025-03-27 22:45:21]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:45:22]	[done]
+	build successfully !
+
+[2025-03-27 22:45:41]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:45:42]	[done]
+	build successfully !
+
+[2025-03-27 22:46:16]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:46:17]	[done]
+	build successfully !
+
+[2025-03-27 22:52:45]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:52:46]	[done]
+	build successfully !
+
+[2025-03-27 22:55:06]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:55:07]	[done]
+	build successfully !
+
+[2025-03-27 22:55:49]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:55:50]	[done]
+	build successfully !
+
+[2025-03-27 22:57:59]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 22:58:00]	[done]
+	build successfully !
+
+[2025-03-27 23:05:21]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:05:22]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\3.STM32F103-GPIO-Key/./src/main.c:16: undefined reference to `GPIO_Init_KEY1'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\3.STM32F103-GPIO-Key/./src/main.c:17: undefined reference to `GPIO_Init_KEY2'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\3.STM32F103-GPIO-Key/./src/main.c:18: undefined reference to `GPIO_Init_KEY3'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\3.STM32F103-GPIO-Key/./src/main.c:22: undefined reference to `keyScan'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:        1204 B       128 KB      0.92%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-27 23:05:37]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:05:38]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\3.STM32F103-GPIO-Key/./src/main.c:23: undefined reference to `keyScan'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:        1368 B       128 KB      1.04%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-27 23:05:54]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:05:55]	[done]
+	build successfully !
+
+[2025-03-27 23:07:10]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:07:11]	[done]
+	build successfully !
+
+[2025-03-27 23:07:18]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:07:19]	[done]
+	build successfully !
+
+[2025-03-27 23:09:40]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:09:41]	[done]
+	build successfully !
+
+[2025-03-27 23:11:12]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\led.h' has been changed.
+
+[2025-03-27 23:11:14]	[done]
+	build successfully !
+
+[2025-03-27 23:11:44]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\led.h' has been changed.
+
+[2025-03-27 23:11:45]	[done]
+	build successfully !
+
+[2025-03-27 23:13:18]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-27 23:13:19]	[done]
+	build successfully !
+
+[2025-03-27 23:14:06]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-27 23:14:06]	[done]
+	build successfully !
+
+[2025-03-27 23:15:25]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\led.h' has been changed.
+
+[2025-03-27 23:15:26]	[done]
+	build successfully !
+
+[2025-03-27 23:16:16]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:16:16]	[done]
+	build successfully !
+
+[2025-03-27 23:16:21]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:16:22]	[done]
+	build successfully !
+
+[2025-03-27 23:17:10]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:17:11]	[done]
+	build successfully !
+
+[2025-03-27 23:44:19]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:44:19]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/main.c:11:
+./src/./drive/key.h: In function 'Key_Scan':
+./src/./drive/key.h:25:12: warning: 'return' with a value, in function returning void [-Wreturn-type]
+   25 |     return keyNum;
+      |            ^~~~~~
+./src/./drive/key.h:15:6: note: declared here
+   15 | void Key_Scan(){
+      |      ^~~~~~~~
+./src/main.c: In function 'main':
+./src/main.c:20:16: error: void value not ignored as it ought to be
+   20 |         keyNum = Key_Scan();
+      |                ^
+
+[2025-03-27 23:44:38]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:44:39]	[done]
+	build successfully !
+
+[2025-03-27 23:45:38]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\led.h' has been changed.
+
+[2025-03-27 23:45:38]	[done]
+	build successfully !
+
+[2025-03-27 23:46:10]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\led.h' has been changed.
+
+[2025-03-27 23:46:11]	[done]
+	build successfully !
+
+[2025-03-27 23:49:27]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:49:28]	[done]
+	build successfully !
+
+[2025-03-27 23:50:25]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-27 23:50:26]	[done]
+	build successfully !
+
+[2025-03-27 23:51:22]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:51:22]	[done]
+	build successfully !
+
+[2025-03-27 23:52:55]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-27 23:52:55]	[done]
+	build successfully !
+
+[2025-03-27 23:58:32]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-27 23:58:33]	[done]
+	build successfully !
+
+[2025-03-28 00:01:40]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-28 00:01:41]	[done]
+	build successfully !
+
+[2025-03-28 00:02:31]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:02:31]	[done]
+	build successfully !
+
+[2025-03-28 00:02:53]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-28 00:02:54]	[done]
+	build successfully !
+
+[2025-03-28 00:04:07]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:04:07]	[done]
+	build successfully !
+
+[2025-03-28 00:04:26]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:04:26]	[done]
+	build successfully !
+
+[2025-03-28 00:11:47]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:11:47]	[done]
+	build successfully !
+
+[2025-03-28 00:12:14]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-28 00:12:15]	[done]
+	build successfully !
+
+[2025-03-28 00:20:55]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:20:56]	[done]
+	build successfully !
+
+[2025-03-28 00:21:05]	[done]
+	build successfully !
+
+[2025-03-28 00:23:33]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:23:34]	[done]
+	build successfully !
+
+[2025-03-28 00:24:12]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-28 00:24:12]	[done]
+	build successfully !
+
+[2025-03-28 00:25:19]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-28 00:25:20]	[done]
+	build successfully !
+
+[2025-03-28 00:26:46]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:26:47]	[done]
+	build successfully !
+
+[2025-03-28 00:27:30]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:27:31]	[done]
+	build successfully !
+
+[2025-03-28 00:27:53]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': source file has been changed.
+
+[2025-03-28 00:27:54]	[done]
+	build successfully !
+
+[2025-03-28 00:28:21]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:28:22]	[done]
+	build successfully !
+
+[2025-03-28 00:29:12]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:29:12]	[done]
+	build successfully !
+
+[2025-03-28 00:31:39]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key\src\drive\key.h' has been changed.
+
+[2025-03-28 00:31:40]	[done]
+	build successfully !
+
+[2025-03-30 13:51:04]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\drive\key.h' has been changed.
+
+[2025-03-30 13:51:04]	[done]
+	build successfully !
+
+[2025-03-30 13:51:29]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\drive\key.h' has been changed.
+
+[2025-03-30 13:51:29]	[done]
+	build successfully !
+
+[2025-03-30 13:51:49]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\drive\key.h' has been changed.
+
+[2025-03-30 13:51:49]	[done]
+	build successfully !
+
+[2025-03-30 14:10:01]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:10:01]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/main.c:11:
+./src/./drive/key.h: In function 'KEY_Scan':
+./src/./drive/key.h:45:9: warning: implicit declaration of function 'Rough_Delay_Ms' [-Wimplicit-function-declaration]
+   45 |         Rough_Delay_Ms(20);
+      |         ^~~~~~~~~~~~~~
+./src/main.c: In function 'main':
+./src/main.c:30:12: error: too few arguments to function 'KEY_Scan'
+   30 |        if (KEY_Scan(GPIOA,GPIO_Pin_0) == KEY_DOWN)
+      |            ^~~~~~~~
+In file included from ./src/main.c:11:
+./src/./drive/key.h:41:9: note: declared here
+   41 | uint8_t KEY_Scan(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |         ^~~~~~~~
+./src/main.c:34:12: error: too few arguments to function 'KEY_Scan'
+   34 |        if (KEY_Scan(GPIOC,GPIO_Pin_15)==KEY_DOWN)
+      |            ^~~~~~~~
+In file included from ./src/main.c:11:
+./src/./drive/key.h:41:9: note: declared here
+   41 | uint8_t KEY_Scan(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |         ^~~~~~~~
+./src/main.c:36:35: error: expected ';' before '}' token
+   36 |         Turn_LED(GPIOA,GPIO_Pin_2)
+      |                                   ^
+      |                                   ;
+   37 |        }
+      |        ~
+
+[2025-03-30 14:10:09]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:10:09]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/main.c:11:
+./src/./drive/key.h: In function 'KEY_Scan':
+./src/./drive/key.h:45:9: warning: implicit declaration of function 'Rough_Delay_Ms' [-Wimplicit-function-declaration]
+   45 |         Rough_Delay_Ms(20);
+      |         ^~~~~~~~~~~~~~
+./src/main.c: In function 'main':
+./src/main.c:30:12: error: too few arguments to function 'KEY_Scan'
+   30 |        if (KEY_Scan(GPIOA,GPIO_Pin_0) == KEY_DOWN)
+      |            ^~~~~~~~
+In file included from ./src/main.c:11:
+./src/./drive/key.h:41:9: note: declared here
+   41 | uint8_t KEY_Scan(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |         ^~~~~~~~
+./src/main.c:34:12: error: too few arguments to function 'KEY_Scan'
+   34 |        if (KEY_Scan(GPIOC,GPIO_Pin_15)==KEY_DOWN)
+      |            ^~~~~~~~
+In file included from ./src/main.c:11:
+./src/./drive/key.h:41:9: note: declared here
+   41 | uint8_t KEY_Scan(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |         ^~~~~~~~
+
+[2025-03-30 14:10:42]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:10:42]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/main.c: In function 'main':
+./src/main.c:30:12: error: too few arguments to function 'KEY_Scan'
+   30 |        if (KEY_Scan(GPIOA,GPIO_Pin_0) == KEY_DOWN)
+      |            ^~~~~~~~
+In file included from ./src/main.c:11:
+./src/./drive/key.h:41:9: note: declared here
+   41 | uint8_t KEY_Scan(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |         ^~~~~~~~
+./src/main.c:34:12: error: too few arguments to function 'KEY_Scan'
+   34 |        if (KEY_Scan(GPIOC,GPIO_Pin_15)==KEY_DOWN)
+      |            ^~~~~~~~
+In file included from ./src/main.c:11:
+./src/./drive/key.h:41:9: note: declared here
+   41 | uint8_t KEY_Scan(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |         ^~~~~~~~
+
+[2025-03-30 14:11:28]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:11:28]	[done]
+	build successfully !
+
+[2025-03-30 14:13:06]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:13:07]	[done]
+	build successfully !
+
+[2025-03-30 14:18:08]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:18:09]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/main.c:11:
+./src/./drive/key.h: In function 'KEY_Init':
+./src/./drive/key.h:38:5: error: expected ';' before 'GPIO_Init'
+   38 |     GPIO_Init(GPIOB,&gpio_instruct);
+      |     ^~~~~~~~~
+./src/main.c: In function 'main':
+./src/main.c:18:5: warning: implicit declaration of function 'Key1_Init'; did you mean 'KEY_Init'? [-Wimplicit-function-declaration]
+   18 |     Key1_Init();
+      |     ^~~~~~~~~
+      |     KEY_Init
+./src/main.c:19:5: warning: implicit declaration of function 'Key2_Init'; did you mean 'KEY_Init'? [-Wimplicit-function-declaration]
+   19 |     Key2_Init();
+      |     ^~~~~~~~~
+      |     KEY_Init
+
+[2025-03-30 14:19:33]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:19:34]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: ./build/Debug/.obj/src/main.o: in function `main':
+e:\32\Project\3.STM32F103-GPIO-Key-LEDS/./src/main.c:18: undefined reference to `Key1_Init'
+c:/users/sounyz/.eide/tools/gcc_arm/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/bin/ld.exe: e:\32\Project\3.STM32F103-GPIO-Key-LEDS/./src/main.c:19: undefined reference to `Key2_Init'
+Memory region         Used Size  Region Size  %age Used
+           FLASH:        1380 B       128 KB      1.05%
+             RAM:         284 B        20 KB      1.39%
+       MEMORY_B1:          0 GB         0 GB
+collect2.exe: error: ld returned 1 exit status
+
+
+[2025-03-30 14:19:55]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:19:56]	[done]
+	build successfully !
+
+[2025-03-30 14:21:04]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\drive\key.h' has been changed.
+
+[2025-03-30 14:21:04]	[done]
+	build successfully !
+
+[2025-03-30 14:21:48]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:21:49]	[done]
+	build successfully !
+
+[2025-03-30 14:22:37]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\drive\key.h' has been changed.
+
+[2025-03-30 14:22:38]	[done]
+	build successfully !
+
+[2025-03-30 14:25:22]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': source file has been changed.
+
+[2025-03-30 14:25:23]	[done]
+	build successfully !
+
+[2025-03-30 14:29:06]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\drive\key.h' has been changed.
+
+[2025-03-30 14:29:07]	[done]
+	build successfully !
+
+[2025-03-30 14:29:29]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-LEDS\src\drive\key.h' has been changed.
+
+[2025-03-30 14:29:29]	[done]
+	build successfully !
+
+[2025-03-30 16:01:53]	[info] incremental build: 4 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': object (.o) file not exist
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Led_Onboard.c': object (.o) file not exist
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\MyDelay.c': object (.o) file not exist
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': source file has been changed.
+
+[2025-03-30 16:01:53]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Led_Onboard.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/src/Led_Onboard.o -MMD ./src/drive/src/Led_Onboard.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/drive/src/Led_Onboard.c:1:
+src/./drive/inc/Led_Onboard.h:9:10: fatal error: ./drive/MyDelay.h: No such file or directory
+    9 | #include "./drive/MyDelay.h"
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
+[2025-03-30 16:02:17]	[info] incremental build: 3 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Led_Onboard.c': object (.o) file not exist
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\MyDelay.c': object (.o) file not exist
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': source file has been changed.
+
+[2025-03-30 16:02:18]	[done]
+	build successfully !
+
+[2025-03-30 16:16:59]	[info] incremental build: 5 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Led_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\MyDelay.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\OLED.c': object (.o) file not exist
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+
+[2025-03-30 16:16:59]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/src/Key_Onboard.o -MMD ./src/drive/src/Key_Onboard.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/src/Key_Onboard.c:9:10: fatal error: ./drive/inc/MyDelay.h: No such file or directory
+    9 | #include "./drive/inc/MyDelay.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
+[2025-03-30 16:18:01]	[info] incremental build: 5 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Led_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\MyDelay.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\OLED.c': object (.o) file not exist
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+
+[2025-03-30 16:18:01]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/src/Key_Onboard.o -MMD ./src/drive/src/Key_Onboard.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/src/Key_Onboard.c:43:58: error: unknown type name 'KEY_TriggerLevel'
+   43 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |                                                          ^~~~~~~~~~~~~~~~
+
+[2025-03-30 16:18:32]	[info] incremental build: 5 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Led_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\MyDelay.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\OLED.c': object (.o) file not exist
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+
+[2025-03-30 16:18:33]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/main.c:8:
+./src/./drive/inc/Key_Onboard.h:15:1: error: unknown type name 'uint8_t'
+   15 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus);
+      | ^~~~~~~
+./src/./drive/inc/Key_Onboard.h:15:18: error: unknown type name 'GPIO_TypeDef'
+   15 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus);
+      |                  ^~~~~~~~~~~~
+./src/./drive/inc/Key_Onboard.h:15:39: error: unknown type name 'uint16_t'
+   15 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus);
+      |                                       ^~~~~~~~
+./src/./drive/inc/Key_Onboard.h:15:58: error: unknown type name 'KEY_TriggerLevel'
+   15 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus);
+      |                                                          ^~~~~~~~~~~~~~~~
+In file included from ./src/main.c:9:
+./src/./drive/inc/Led_Onboard.h:18:15: error: unknown type name 'GPIO_TypeDef'
+   18 | void Turn_LED(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
+      |               ^~~~~~~~~~~~
+./src/./drive/inc/Led_Onboard.h:18:36: error: unknown type name 'uint16_t'
+   18 | void Turn_LED(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin);
+      |                                    ^~~~~~~~
+./src/main.c: In function 'main':
+./src/main.c:26:12: warning: implicit declaration of function 'KEY_Scan' [-Wimplicit-function-declaration]
+   26 |        if (KEY_Scan(GPIOA,GPIO_Pin_0,KEY_HIGH_TRIGGER) == KEY_DOWN)
+      |            ^~~~~~~~
+./src/main.c:26:21: error: 'GPIOA' undeclared (first use in this function)
+   26 |        if (KEY_Scan(GPIOA,GPIO_Pin_0,KEY_HIGH_TRIGGER) == KEY_DOWN)
+      |                     ^~~~~
+./src/main.c:26:21: note: each undeclared identifier is reported only once for each function it appears in
+./src/main.c:26:27: error: 'GPIO_Pin_0' undeclared (first use in this function)
+   26 |        if (KEY_Scan(GPIOA,GPIO_Pin_0,KEY_HIGH_TRIGGER) == KEY_DOWN)
+      |                           ^~~~~~~~~~
+./src/main.c:26:38: error: 'KEY_HIGH_TRIGGER' undeclared (first use in this function)
+   26 |        if (KEY_Scan(GPIOA,GPIO_Pin_0,KEY_HIGH_TRIGGER) == KEY_DOWN)
+      |                                      ^~~~~~~~~~~~~~~~
+./src/main.c:26:59: error: 'KEY_DOWN' undeclared (first use in this function)
+   26 |        if (KEY_Scan(GPIOA,GPIO_Pin_0,KEY_HIGH_TRIGGER) == KEY_DOWN)
+      |                                                           ^~~~~~~~
+./src/main.c:28:9: warning: implicit declaration of function 'Turn_LED' [-Wimplicit-function-declaration]
+   28 |         Turn_LED(GPIOA,GPIO_Pin_1);
+      |         ^~~~~~~~
+./src/main.c:28:24: error: 'GPIO_Pin_1' undeclared (first use in this function)
+   28 |         Turn_LED(GPIOA,GPIO_Pin_1);
+      |                        ^~~~~~~~~~
+./src/main.c:30:21: error: 'GPIOC' undeclared (first use in this function)
+   30 |        if (KEY_Scan(GPIOC,GPIO_Pin_13,KEY_HIGH_TRIGGER)==KEY_DOWN)
+      |                     ^~~~~
+./src/main.c:30:27: error: 'GPIO_Pin_13' undeclared (first use in this function)
+   30 |        if (KEY_Scan(GPIOC,GPIO_Pin_13,KEY_HIGH_TRIGGER)==KEY_DOWN)
+      |                           ^~~~~~~~~~~
+./src/main.c:32:24: error: 'GPIO_Pin_2' undeclared (first use in this function)
+   32 |         Turn_LED(GPIOA,GPIO_Pin_2);
+      |                        ^~~~~~~~~~
+
+[2025-03-30 16:19:17]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': source file has been changed.
+
+[2025-03-30 16:19:17]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/main.o -MMD ./src/main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/main.c:9:
+./src/./drive/inc/Key_Onboard.h:15:58: error: unknown type name 'KEY_TriggerLevel'
+   15 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus);
+      |                                                          ^~~~~~~~~~~~~~~~
+./src/main.c: In function 'main':
+./src/main.c:27:12: warning: implicit declaration of function 'KEY_Scan' [-Wimplicit-function-declaration]
+   27 |        if (KEY_Scan(GPIOA,GPIO_Pin_0,KEY_HIGH_TRIGGER) == KEY_DOWN)
+      |            ^~~~~~~~
+./src/main.c:27:38: error: 'KEY_HIGH_TRIGGER' undeclared (first use in this function)
+   27 |        if (KEY_Scan(GPIOA,GPIO_Pin_0,KEY_HIGH_TRIGGER) == KEY_DOWN)
+      |                                      ^~~~~~~~~~~~~~~~
+./src/main.c:27:38: note: each undeclared identifier is reported only once for each function it appears in
+./src/main.c:27:59: error: 'KEY_DOWN' undeclared (first use in this function)
+   27 |        if (KEY_Scan(GPIOA,GPIO_Pin_0,KEY_HIGH_TRIGGER) == KEY_DOWN)
+      |                                                           ^~~~~~~~
+
+[2025-03-30 16:20:05]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': source file has been changed.
+
+[2025-03-30 16:20:05]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/src/Key_Onboard.o -MMD ./src/drive/src/Key_Onboard.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/src/Key_Onboard.c:12:1: error: multiple storage classes in declaration specifiers
+   12 | extern typedef enum {
+      | ^~~~~~
+./src/drive/src/Key_Onboard.c:18:1: error: multiple storage classes in declaration specifiers
+   18 | extern typedef enum {
+      | ^~~~~~
+./src/drive/src/Key_Onboard.c:58:58: error: expected declaration specifiers or '...' before 'KEY_TriggerLevel'
+   58 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |                                                          ^~~~~~~~~~~~~~~~
+
+[2025-03-30 16:20:36]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': source file has been changed.
+
+[2025-03-30 16:20:36]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/src/Key_Onboard.o -MMD ./src/drive/src/Key_Onboard.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/src/Key_Onboard.c:45:58: error: unknown type name 'KEY_TriggerLevel'
+   45 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |                                                          ^~~~~~~~~~~~~~~~
+
+[2025-03-30 16:29:14]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': source file has been changed.
+
+[2025-03-30 16:29:15]	[done]
+	build successfully !
+
+[2025-03-30 16:31:20]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+
+[2025-03-30 16:31:20]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/src/Key_Onboard.o -MMD ./src/drive/src/Key_Onboard.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/drive/src/Key_Onboard.c:10:
+src/./drive/inc/Key_Onboard.h:13:8: warning: type defaults to 'int' in declaration of 'KEY_TriggerLevel' [-Wimplicit-int]
+   13 | extern KEY_TriggerLevel ;
+      |        ^~~~~~~~~~~~~~~~
+src/./drive/inc/Key_Onboard.h:14:8: warning: type defaults to 'int' in declaration of 'KEY_Status' [-Wimplicit-int]
+   14 | extern KEY_Status;
+      |        ^~~~~~~~~~
+src/./drive/inc/Key_Onboard.h:17:58: error: expected declaration specifiers or '...' before 'KEY_TriggerLevel'
+   17 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus);
+      |                                                          ^~~~~~~~~~~~~~~~
+./src/drive/src/Key_Onboard.c:16:3: error: 'KEY_TriggerLevel' redeclared as different kind of symbol
+   16 | } KEY_TriggerLevel;
+      |   ^~~~~~~~~~~~~~~~
+In file included from ./src/drive/src/Key_Onboard.c:10:
+src/./drive/inc/Key_Onboard.h:13:8: note: previous declaration of 'KEY_TriggerLevel' was here
+   13 | extern KEY_TriggerLevel ;
+      |        ^~~~~~~~~~~~~~~~
+./src/drive/src/Key_Onboard.c:23:3: error: 'KEY_Status' redeclared as different kind of symbol
+   23 | } KEY_Status;
+      |   ^~~~~~~~~~
+In file included from ./src/drive/src/Key_Onboard.c:10:
+src/./drive/inc/Key_Onboard.h:14:8: note: previous declaration of 'KEY_Status' was here
+   14 | extern KEY_Status;
+      |        ^~~~~~~~~~
+
+[2025-03-30 16:32:42]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+
+[2025-03-30 16:32:42]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/src/Key_Onboard.o -MMD ./src/drive/src/Key_Onboard.c
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./src/drive/src/Key_Onboard.c:10:
+src/./drive/inc/Key_Onboard.h:14:58: error: unknown type name 'KEY_TriggerLevel'
+   14 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus);
+      |                                                          ^~~~~~~~~~~~~~~~
+./src/drive/src/Key_Onboard.c:25:1: warning: useless type name in empty declaration
+   25 | extern KEY_TriggerLevel;
+      | ^~~~~~
+./src/drive/src/Key_Onboard.c:26:1: warning: useless type name in empty declaration
+   26 | extern KEY_Status;
+      | ^~~~~~
+
+[2025-03-30 16:34:12]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+
+[2025-03-30 16:34:13]	[done]
+	build successfully !
+
+[2025-03-30 16:34:55]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+
+[2025-03-30 16:34:55]	[done]
+	build successfully !
+
+[2025-03-30 16:35:23]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+
+[2025-03-30 16:35:23]	compilation failed at : "e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c", exit code: 1
+command: 
+  "C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -xc -mthumb -std=c11 -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -mcpu=cortex-m3 -Og -Wall -g --specs=nosys.specs --specs=nano.specs -ffunction-sections -fdata-sections -o ./build/Debug/.obj/src/drive/src/Key_Onboard.o -MMD ./src/drive/src/Key_Onboard.c
+   at unify_builder.Program.Main(String[] args_)
+---
+./src/drive/src/Key_Onboard.c:46:58: error: unknown type name 'KEY_TriggerLevel'
+   46 | uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, KEY_TriggerLevel key_PressStatus)
+      |                                                          ^~~~~~~~~~~~~~~~
+
+[2025-03-30 16:35:29]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': source file has been changed.
+
+[2025-03-30 16:35:30]	[done]
+	build successfully !
+
+[2025-03-30 16:43:15]	[info] incremental build: 2 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\src\Key_Onboard.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\main.c': dependence 'e:\32\Project\3.STM32F103-GPIO-Key-OnBoard\src\drive\inc\Key_Onboard.h' has been changed.
+
+[2025-03-30 16:43:16]	[done]
+	build successfully !
+
+[2025-03-30 16:43:38]	[done]
+	build successfully !
+
+[2025-03-30 17:14:17]	[info] incremental build: 3 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-oled\src\drive\src\Key_Onboard.c': dependence 'e:\32\Project\3.STM32F103-GPIO-oled\src\drive\inc\Key_Onboard.h' has been changed.
+'e:\32\Project\3.STM32F103-GPIO-oled\src\drive\src\OLED.c': source file has been changed.
+'e:\32\Project\3.STM32F103-GPIO-oled\src\main.c': source file has been changed.
+
+[2025-03-30 17:14:18]	[done]
+	build successfully !
+
+[2025-03-30 17:24:21]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-oled\src\main.c': source file has been changed.
+
+[2025-03-30 17:24:21]	[done]
+	build successfully !
+
+[2025-03-30 17:24:37]	[info] incremental build: 1 source files changed
+These source files will be recompiled
+---
+'e:\32\Project\3.STM32F103-GPIO-oled\src\main.c': source file has been changed.
+
+[2025-03-30 17:24:38]	[done]
+	build successfully !
+

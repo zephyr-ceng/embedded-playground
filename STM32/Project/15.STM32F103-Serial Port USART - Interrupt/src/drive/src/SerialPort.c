@@ -6,10 +6,10 @@
 ****************/
 
 #include "stm32f10x.h"
-#include "stm32f10x_usart.h"
-#include "stm32f10x_gpio.h"
-#include <stdio.h>
-#include "stm32f10x_rcc.h"
+// #include "stm32f10x_usart.h"
+// #include "stm32f10x_gpio.h"
+// #include <stdio.h>
+// #include "stm32f10x_rcc.h"
 
 
 #define RX_BUFFER_SIZE 128 // 接收缓冲区大小
@@ -43,7 +43,7 @@ void UART_Init(void) {
 
     // Configure USART1
     USART_InitTypeDef USART_InitStructure;
-    USART_InitStructure.USART_BaudRate = 9600;
+    USART_InitStructure.USART_BaudRate = 115200;
     USART_InitStructure.USART_WordLength = USART_WordLength_8b;
     USART_InitStructure.USART_StopBits = USART_StopBits_1;
     USART_InitStructure.USART_Parity = USART_Parity_No;
@@ -140,6 +140,11 @@ uint16_t UART_ReadAllFromBuffer(char *destBuffer, uint16_t maxLength) {
     return bytesRead;
 }
 
+/**
+* @brief  发送字符串到USART1
+* @param  str: 要发送的字符串
+* @retval Null
+* */
 
 void UART_send_str_IT(const char *str) {
     while (*str != '\0') {
@@ -150,24 +155,4 @@ void UART_send_str_IT(const char *str) {
     }
     // 等待发送完成
     while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);
-}
-
-
-/**
-* @brief  发送单个字节到USART1
-* @param  data: 要发送的字节
-* @retval null
-* */
-
-void UART_SendByte(uint8_t data) {
-    // 等待发送缓冲区空
-    while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
-    // 发送数据
-    USART_SendData(USART1, data);
-}
-
-void UART_SendString(const char *str) {
-    while (*str) {
-        UART_SendByte((uint8_t)(*str++));
-    }
 }

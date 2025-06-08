@@ -1,0 +1,3 @@
+tool: GCC
+fileName: STM32F103-GPIO-KEY.map
+elfName: STM32F103-GPIO-KEY.elf
