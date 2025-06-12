@@ -1,5 +1,9 @@
 #include "stm32f10x.h"
+#include <string.h>
+#include "stm32f10x_dma.h"
 
+#define TX_BUFFER_SIZE 256
+#define RX_BUFFER_SIZE 256
 typedef struct {
     uint8_t buffer[2][RX_BUFFER_SIZE]; // Double buffer for reception
     volatile uint8_t activeBuffer;     // Index of the active buffer
@@ -55,6 +59,7 @@ void USART_DMA_Init(uint32_t baurdrate)
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 
     // Configure DMA1 Channel4 for USART1_TX
+    DMA_InitTypeDef DMA_InitStructure;
     DMA_DeInit(DMA1_Channel4);
     DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&USART1->DR;
     DMA_InitStructure.DMA_MemoryBaseAddr     = (uint32_t)txBuffer.buffer[0];
@@ -69,6 +74,17 @@ void USART_DMA_Init(uint32_t baurdrate)
     DMA_InitStructure.DMA_M2M                = DMA_M2M_Disable;
     DMA_Init(DMA1_Channel4, &DMA_InitStructure);
 
+
+    // Configure DMA1 Channel5 for USART1_RX
+    DMA_DeInit(DMA1_Channel5);
+    DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&USART1->DR;
+    DMA_InitStructure.DMA_MemoryBaseAddr     = (uint32_t)rxBuffer.buffer[0];
+    DMA_InitStructure.DMA_DIR                = DMA_DIR_PeripheralSRC;
+    DMA_InitStructure.DMA_BufferSize         = RX_BUFFER_SIZE; // Set the size of the buffer
+    DMA_InitStructure.DMA_Mode               = DMA_Mode_Circular;
+    DMA_InitStructure.DMA_Priority           = DMA_Priority_High;
+    DMA_Init(DMA1_Channel5, &DMA_InitStructure);
+
     // Enable DMA1 Channel4 interrupt in NVIC
     NVIC_InitTypeDef NVIC_InitStructure;
     NVIC_InitStructure.NVIC_IRQChannel = DMA1_Channel4_IRQn;
@@ -78,16 +94,6 @@ void USART_DMA_Init(uint32_t baurdrate)
     NVIC_Init(&NVIC_InitStructure);
     DMA_ITConfig(DMA1_Channel4, DMA_IT_TC, ENABLE); // Enable transfer complete interrupt
 
-    // Configure DMA1 Channel5 for USART1_RX
-    DMA_InitTypeDef DMA_InitStructure;
-    DMA_DeInit(DMA1_Channel5);
-    DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&USART1->DR;
-    DMA_InitStructure.DMA_MemoryBaseAddr     = (uint32_t)rxBuffer.buffer[0];
-    DMA_InitStructure.DMA_DIR                = DMA_DIR_PeripheralSRC;
-    DMA_InitStructure.DMA_BufferSize         = RX_BUFFER_SIZE; // Set the size of the buffer
-    DMA_InitStructure.DMA_Mode               = DMA_Mode_Circular;
-    DMA_InitStructure.DMA_Priority           = DMA_Priority_High;
-    DMA_Init(DMA1_Channel5, &DMA_InitStructure);
 
     // Enable DMA1 Channel5
     DMA_Cmd(DMA1_Channel5, ENABLE);
@@ -125,7 +131,7 @@ void DMA1_Channel4_IRQHandler(void)
 
         // Switch to the other buffer if it is ready
         // uint8_t nextBuffer = (txBuffer.activeBuffer + 1) % 2;
-        uint8_t nextBuffer != txBuffer.activeBuffer; // Toggle between 0 and 1
+        uint8_t nextBuffer = !txBuffer.activeBuffer; // Toggle between 0 and 1
 
         if (txBuffer.ready[nextBuffer])
         {
@@ -141,96 +147,28 @@ void DMA1_Channel4_IRQHandler(void)
     }
 }
 
-// TODO: 需要修改接收函数
+// TODO: 发送函数会发送两次
 
 // DMA发送函数
-uint8_t USART_DMA_Send(uint8_t* data, uint16_t length) {
-    // 查找空闲的发送缓冲区
-    uint8_t targetBuffer = !dmaTx.activeBuffer;
-    
-    // 如果目标缓冲区忙，则使用当前活动缓冲区的备用
-    if (dmaTx.ready[targetBuffer]) {
-        targetBuffer = dmaTx.activeBuffer;
-        if (dmaTx.ready[targetBuffer]) {
-            // 两个缓冲区都忙，无法发送
-            return 0;
+uint8_t USART_DMA_Send(char* data, uint16_t length) {
+    uint8_t targetBuffer = !txBuffer.activeBuffer; // Toggle between 0 and 1
+    if (txBuffer.ready[targetBuffer]) {
+        targetBuffer = txBuffer.activeBuffer    ; // Use the active buffer if the target is not ready
+        if (txBuffer.ready[targetBuffer]) {
+            return 0; // No buffer available
         }
+    }   
+    if(length > TX_BUFFER_SIZE) {
+        length = TX_BUFFER_SIZE; // Limit length to buffer size
     }
-    
-    // 检查数据长度有效性
-    if (length > TX_BUFFER_SIZE) {
-        length = TX_BUFFER_SIZE;
-    }
-    
-    // 复制数据到缓冲区
-    memcpy(dmaTx.buffer[targetBuffer], data, length);
-    dmaTx.lengths[targetBuffer] = length;
-    dmaTx.ready[targetBuffer] = 1;
-    
-    // 如果当前没有DMA传输，立即启动
-    if (!DMA_GetCmdStatus(DMA1_Channel4)) {
-        dmaTx.activeBuffer = targetBuffer;
-        
-        DMA1_Channel4->CMAR = (uint32_t)dmaTx.buffer[targetBuffer];
-        DMA1_Channel4->CNDTR = length;
-        DMA_Cmd(DMA1_Channel4, ENABLE);
-        USART_DMACmd(USART1, USART_DMAReq_Tx, ENABLE);
-    }
-    
-    return 1;
-}
 
-// 接收缓冲区处理函数（在主循环中定期调用）
-void USART_DMA_ProcessReceived(void) {
-    static uint16_t lastPos[2] = {0, 0};
-    uint8_t processBuffer = dmaRx.activeBuffer;
-    
-    // 计算当前DMA位置
-    uint16_t currentPos = RX_BUFFER_SIZE - DMA_GetCurrDataCounter(DMA1_Channel5);
-    
-    // 检查缓冲区是否回绕
-    if (currentPos < lastPos[processBuffer]) {
-        // 处理从lastPos到缓冲区末尾的数据
-        uint16_t length = RX_BUFFER_SIZE - lastPos[processBuffer];
-        if (length > 0) {
-            // 处理数据 (dmaRx.buffer[processBuffer] + lastPos[processBuffer], length)
-            // 这里添加实际的数据处理代码
-        }
-        lastPos[processBuffer] = 0;
-    }
-    
-    // 处理剩余数据
-    if (currentPos > lastPos[processBuffer]) {
-        uint16_t length = currentPos - lastPos[processBuffer];
-        if (length > 0) {
-            // 处理数据 (dmaRx.buffer[processBuffer] + lastPos[processBuffer], length)
-            // 这里添加实际的数据处理代码
-        }
-        lastPos[processBuffer] = currentPos;
-    }
-    
-    // 检查是否缓冲区满（可选）
-    if (currentPos == RX_BUFFER_SIZE - 1) {
-        dmaRx.full[processBuffer] = 1;
-    }
-}
+    memcpy(txBuffer.buffer[targetBuffer], data, length);
+    txBuffer.dataLength[targetBuffer] = length;
+    txBuffer.ready[targetBuffer] = 1; // Mark the buffer as ready
 
-// 切换接收缓冲区（在数据处理完成后调用）
-void USART_DMA_SwitchRxBuffer(void) {
-    // 禁用DMA接收
-    DMA_Cmd(DMA1_Channel5, DISABLE);
-    
-    // 切换活动缓冲区
-    uint8_t newBuffer = !dmaRx.activeBuffer;
-    
-    // 配置新缓冲区
-    DMA1_Channel5->CMAR = (uint32_t)dmaRx.buffer[newBuffer];
-    DMA1_Channel5->CNDTR = RX_BUFFER_SIZE;
-    
-    // 重置状态
-    dmaRx.full[newBuffer] = 0;
-    dmaRx.activeBuffer = newBuffer;
-    
-    // 重新使能DMA
-    DMA_Cmd(DMA1_Channel5, ENABLE);
+    DMA_Cmd(DMA1_Channel4, DISABLE); // Disable DMA before reconfiguring
+    DMA_SetCurrDataCounter(DMA1_Channel4, txBuffer.dataLength[targetBuffer]); // Set the number of data items to transfer
+    DMA_Cmd(DMA1_Channel4, ENABLE); // Enable DMA channel for transmission
+    USART_DMACmd(USART1, USART_DMAReq_Tx, ENABLE);
+    return (DMA_GetFlagStatus(DMA1_FLAG_TC4) == RESET) ? 1 : 0;
 }
