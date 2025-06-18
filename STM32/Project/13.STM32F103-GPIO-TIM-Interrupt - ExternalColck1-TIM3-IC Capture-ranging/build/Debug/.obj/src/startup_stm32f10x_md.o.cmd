@@ -1,1 +1,0 @@
-"C:\Users\sounyz\.eide\tools\gcc_arm\bin\arm-none-eabi-gcc.exe" -c -x assembler-with-cpp -mthumb -I. -Isrc -Ilib/cmsis -Ihal/STM32F10x_StdPeriph_Driver -Ihal/STM32F10x_StdPeriph_Driver/inc -Ihal/STM32F10x_StdPeriph_Driver/src -mcpu=cortex-m3 -g --specs=nosys.specs --specs=nano.specs -o ./build/Debug/.obj/src/startup_stm32f10x_md.o -MMD ./src/startup_stm32f10x_md.s
