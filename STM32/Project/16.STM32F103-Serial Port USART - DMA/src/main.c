@@ -6,10 +6,11 @@
 
 uint8_t temp = 0;
 char msg[] = "Hello, STM32!";
+
 int main(void){
     OLED_Init();
     SerialPort_InitGPIO();
-    USART_DMA_Init(115200);
+    USART_DMA_Init(9600);
     OLED_ShowString(1, 1, "Hello, STM32!");
     while (1)
     {

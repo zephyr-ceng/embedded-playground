@@ -156,7 +156,7 @@ TransmissionStatus USART_DMA_Send(char *data, uint16_t length)
         txBuffer.ready[!txBuffer.activeBuffer] = 0; // 将非活动缓冲区标记为未准备好
 
         // 超时处理
-        uint32_t timeout = 1000000; // 设置超时时间
+/*         uint32_t timeout = 1000000; // 设置超时时间
         while (DMA_GetFlagStatus(DMA1_FLAG_TC4) == RESET) {
             if (timeout-- == 0) {
                 // 超时处理
@@ -164,7 +164,7 @@ TransmissionStatus USART_DMA_Send(char *data, uint16_t length)
                 USART_DMACmd(USART1, USART_DMAReq_Tx, DISABLE); // 禁用USART的DMA传输
                 return TRANSMISSION_TIMEOUT; // 退出函数
             }
-        }
+        } */
         DMA_ClearFlag(DMA1_FLAG_TC4); // 清除传输完成标志
         return TRANSMISSION_SUCCESS; // 返回成功状态
     }

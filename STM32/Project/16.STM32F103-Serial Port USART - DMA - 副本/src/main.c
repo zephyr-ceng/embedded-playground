@@ -6,13 +6,16 @@
 
 char msg[] = "Hello, STM32 with DMA USART!";
 char buffer[256]; // 用于接收数据的缓冲区
+
+
 int main(void) {
     OLED_Init();        // 初始化OLED
-    USART_DMA_Init(115200); // 初始化USART1，波特率为115200
+    USART_DMA_Init(9600); // 初始化USART1，波特率为115200
+    OLED_ShowString(1, 1, "Hello USART"); // 在OLED上显示初始化状态
     while (1) {
         // 一直发送msg
         USART_DMA_Send(msg, strlen(msg)); // 发送消息
-        OLED_ShowString(1, 1, "Sending:"); // 在OLED上显示发送状态
+        // OLED_ShowString(1, 1, "Sending:"); // 在OLED上显示发送状态
 
         // 接收串口发送的数据
         memset(buffer, 0, sizeof(buffer)); // 清空接收缓冲区
