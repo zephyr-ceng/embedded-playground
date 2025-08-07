@@ -1,7 +1,6 @@
 // #include "./Modules/inc/SerialPort_Usart.h"
 #include "stm32f10x.h"
 
-
 #define RxBuffer_Size 256
 #define TxBuffer_Size 256
 

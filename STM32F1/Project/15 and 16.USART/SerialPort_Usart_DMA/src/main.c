@@ -23,8 +23,6 @@ int main(void)
             // 在OLED或其他显示设备上显示接收到的数据
         } */
         Set_SendData(USART1, (uint16_t *)msg, strlen(msg)); // Send data via USART1
-        
     }
-    
     return 0;
 }
