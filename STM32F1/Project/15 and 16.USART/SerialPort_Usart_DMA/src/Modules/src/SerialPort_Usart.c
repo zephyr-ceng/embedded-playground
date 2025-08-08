@@ -156,6 +156,8 @@ void USART_NVIC_Config(USART_TypeDef *USARTx)
     NVIC_Init(&NVIC_InitStructure);
 }
 
+
+// TODO: 中断函数中的Length需要更改，应该为接收缓冲区的实际数据长度
 void USART1_IRQHandler(void)
 {
     if (USART_GetITStatus(USART1, USART_IT_IDLE) != RESET) {
@@ -199,7 +201,7 @@ void Get_ReviceData(uint16_t *Buffer)
     for (uint16_t i = 0; i < RxBuffer_Size; i++) {
         Buffer[i] = RxBuffer[i];
     }
-    
+    // TODO: RxBuffer清空可以使用Memset
     // Clear the RxBuffer after copying
     for (uint16_t i = 0; i < RxBuffer_Size; i++) {
         RxBuffer[i] = 0;

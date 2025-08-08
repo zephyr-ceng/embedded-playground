@@ -26,3 +26,6 @@ int main(void)
     }
     return 0;
 }
+
+
+// TODO: 串口待测试验证
