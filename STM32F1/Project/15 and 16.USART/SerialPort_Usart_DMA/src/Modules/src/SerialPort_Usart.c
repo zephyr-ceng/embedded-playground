@@ -1,12 +1,13 @@
 // #include "./Modules/inc/SerialPort_Usart.h"
 #include "stm32f10x.h"
+#include "string.h"
 
 #define RxBuffer_Size 256
 #define TxBuffer_Size 256
 
 uint16_t RxBuffer[RxBuffer_Size];
 uint16_t TxBuffer[TxBuffer_Size];
-
+uint16_t Real_Length = 0; // Variable to store the actual length of received data
 void Usart_Gpio_config(USART_TypeDef *USARTx, uint32_t BauRate)
 {
     if (USARTx == USART1) {
@@ -164,9 +165,11 @@ void USART1_IRQHandler(void)
         // Clear the IDLE flag by reading the status register and data register
         (void)USART1->SR;
         (void)USART1->DR;
-        uint16_t Length = RxBuffer_Size - DMA_GetCurrDataCounter(DMA1_Channel5);
         DMA_Cmd(DMA1_Channel5, DISABLE);                      // Disable DMA to process the received data
-        DMA_SetCurrDataCounter(DMA1_Channel5, Length); // Reset DMA counter
+        uint16_t Length = RxBuffer_Size - DMA_GetCurrDataCounter(DMA1_Channel5);
+        // 处理接收数据
+        Real_Length = Length >0 ? Length : 0; // Store the actual length of received data
+        DMA_SetCurrDataCounter(DMA1_Channel5, RxBuffer_Size); // Reset DMA counter
         DMA_Cmd(DMA1_Channel5, ENABLE);                       // Re-enable DMA for next reception
     }
 }
@@ -177,6 +180,7 @@ void USART2_IRQHandler(void)
         (void)USART2->SR;
         (void)USART2->DR;
         uint16_t Length = RxBuffer_Size - DMA_GetCurrDataCounter(DMA1_Channel6);
+        Real_Length = Length >0 ? Length : 0;
         DMA_Cmd(DMA1_Channel6, DISABLE);                      // Disable DMA to process the received data
         DMA_SetCurrDataCounter(DMA1_Channel6, Length); // Reset DMA counter
         DMA_Cmd(DMA1_Channel6, ENABLE);                       // Re-enable DMA for next reception
@@ -189,23 +193,27 @@ void USART3_IRQHandler(void)
         (void)USART3->SR;
         (void)USART3->DR;
         uint16_t Length = RxBuffer_Size - DMA_GetCurrDataCounter(DMA1_Channel3);
+        Real_Length = Length >0 ? Length : 0;
         DMA_Cmd(DMA1_Channel3, DISABLE);                      // Disable DMA to process the received data
-        DMA_SetCurrDataCounter(DMA1_Channel3, Length); // Reset DMA counter
+        DMA_SetCurrDataCounter(DMA1_Channel3, RxBuffer_Size); // Reset DMA counter
         DMA_Cmd(DMA1_Channel3, ENABLE);                       // Re-enable DMA for next reception
     }
 }
 
+/**
+* @brief  获取接收数据
+* @param  Buffer:接收数据缓冲区指针
+* @retval Null
+* */
 void Get_ReviceData(uint16_t *Buffer)
 {
     // Copy received data to provided buffer
-    for (uint16_t i = 0; i < RxBuffer_Size; i++) {
+    for (uint16_t i = 0; i < Real_Length;; i++) {
         Buffer[i] = RxBuffer[i];
     }
-    // TODO: RxBuffer清空可以使用Memset
-    // Clear the RxBuffer after copying
-    for (uint16_t i = 0; i < RxBuffer_Size; i++) {
-        RxBuffer[i] = 0;
-    }
+    // Reset RxBuffer and Real_Length
+    memset(RxBuffer, 0, sizeof(RxBuffer)); 
+    Real_Length = 0; 
 }
 
 /**
