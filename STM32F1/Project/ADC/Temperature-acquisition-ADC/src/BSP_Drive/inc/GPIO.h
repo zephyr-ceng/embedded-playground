@@ -13,6 +13,7 @@ typedef struct {
 void GPIO_InitPin(GPIO_Config_t config);
 void GPIO_SetPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, bool state);
 bool GPIO_GetPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
 #endif // !__GPIO_H__
 
 

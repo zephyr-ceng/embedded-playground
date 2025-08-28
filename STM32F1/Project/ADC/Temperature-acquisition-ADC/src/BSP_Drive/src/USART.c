@@ -1,6 +1,10 @@
 #include "../inc/USART.h"
 
-// USART函数实现
+/**
+* @brief  USART 初始化
+* @param  config: USART初始化参数的结构体
+* @retval Null
+* */
 void USART_InitModule(USART_Config_t config)
 {
     USART_InitTypeDef USART_InitStructure;
@@ -19,7 +23,9 @@ void USART_InitModule(USART_Config_t config)
     
     USART_Init(config.USARTx, &USART_InitStructure);
     USART_Cmd(config.USARTx, ENABLE);
+    // TODO: 缺少USART_DMACmd()
 }
+
 
 void USART_SendByte(USART_TypeDef* USARTx, uint8_t data)
 {

@@ -1,5 +1,5 @@
-#ifndef _USART_DMA_H
-#define _USART_DMA_H
+#ifndef _USART_DMA_H__
+#define _USART_DMA_H__
 
 #include "stm32f10x.h"
 
