@@ -1,75 +1,118 @@
 #include "../inc/DMA.h"
 #include "string.h"
 
-
-
 /**
- * @brief  初始化DMA1
- * @param  config: DMA初始化结构体
+ * @brief  初始化DMA1,外设到内存的传输
+ * @param  config: DMA初始化结构体,Peripheral-外设类型,
  * @retval Null
  * */
-void DMA_InitChannel(DMA_Config_t config)
+void DMA_InitChannel_PtoM(DMA_Config_t config)
 {
+    const DMA_Mapping_t *m = DMA_Mapping_Find(config.Peripheral);
+    if (*m) return;
+
     DMA_InitTypeDef DMA_InitStructure;
 
     // 开启DMA时钟
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 
-    DMA_InitStructure.DMA_PeripheralBaseAddr = config.DMA_PeripheralBaseAddr;
-    DMA_InitStructure.DMA_MemoryBaseAddr     = config.DMA_MemoryBaseAddr;
-    DMA_InitStructure.DMA_DIR                = config.DMA_DIR;
-    DMA_InitStructure.DMA_BufferSize         = config.DMA_BufferSize;
-    DMA_InitStructure.DMA_PeripheralInc      = config.DMA_PeripheralInc;
-    DMA_InitStructure.DMA_MemoryInc          = config.DMA_MemoryInc;
-    DMA_InitStructure.DMA_PeripheralDataSize = config.DMA_PeripheralDataSize;
-    DMA_InitStructure.DMA_MemoryDataSize     = config.DMA_MemoryDataSize;
-    DMA_InitStructure.DMA_Mode               = config.DMA_Mode;
-    DMA_InitStructure.DMA_Priority           = config.DMA_Priority;
-    DMA_InitStructure.DMA_M2M                = config.DMA_M2M;
+    DMA_DeInit(m->channel);
+    DMA_Cmd(m->channel, DISABLE);
+    DMA_InitStructure.DMA_PeripheralBaseAddr = m->peripheral_addr;                  // 外设地址
+    DMA_InitStructure.DMA_MemoryBaseAddr     = (uint32_t)config.DMA_MemoryBaseAddr; // 内存地址
+    DMA_InitStructure.DMA_BufferSize         = (uint32_t)config.DMA_BufferSize;     // 传输大小
+    DMA_InitStructure.DMA_PeripheralInc      = DMA_PeripheralInc_Disable;           // 外设增量
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;         // 外设数据宽度
+    DMA_InitStructure.DMA_MemoryDataSize     = DMA_MemoryDataSize_Byte;             // 内存数据宽度
+    DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Enable;                // 内存增量
+    DMA_InitStructure.DMA_DIR                = DMA_DIR_PeripheralSRC;               // 外设到存储器
+    DMA_InitStructure.DMA_Mode               = DMA_Mode_Circular;                   // 循环传输
+    DMA_InitStructure.DMA_Priority           = DMA_Priority_Medium;                 // 多通道涉及优先级
+    DMA_InitStructure.DMA_M2M                = DMA_M2M_Disable;                     // 存储器到存储器使用
 
-    DMA_Init(config.DMAy_Channelx, &DMA_InitStructure);
+    DMA_Init(m->channel, &DMA_InitStructure);
     // DMA_EnablePeripheral(config,ENABLE); // 防止外设未初始化进行调用，所以需要显式的外部调用
 }
 
-
-
-void DMA_InitChannel(DMA_Config_t config)
+/**
+ * @brief  初始化DMA1,内存到外设
+ * @param  config: DMA初始化结构体
+ * @retval Null
+ * */
+DMA_Status_e DMA_InitChannel_MtoP(DMA_Config_t config)
 {
+    const DMA_Mapping_t *m = DMA_Mapping_Find(config.Peripheral);
+    if (m == NULL) {
+        return DMA_ERR_NOT_FOUND;
+    }
+
     DMA_InitTypeDef DMA_InitStructure;
 
     // 开启DMA时钟
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
-    DMA_InitStructure.DMA_PeripheralBaseAddr = USART1 ->DR;
-    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
-    
 
+    DMA_InitStructure.DMA_PeripheralBaseAddr = m->peripheral_addr;          // 外设地址
+    DMA_InitStructure.DMA_MemoryBaseAddr     = config.DMA_MemoryBaseAddr;   // 内存地址
+    DMA_InitStructure.DMA_BufferSize         = config.DMA_BufferSize;       // 传输大小
+    DMA_InitStructure.DMA_PeripheralInc      = DMA_PeripheralInc_Disable;   // 外设增量
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte; // 外设数据宽度
+    DMA_InitStructure.DMA_MemoryDataSize     = DMA_MemoryDataSize_Byte;     // 内存数据宽度
+    DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Enable;        // 内存增量
+    DMA_InitStructure.DMA_DIR                = DMA_DIR_PeripheralDST;       // 内存到外设
+    DMA_InitStructure.DMA_Mode               = DMA_Mode_Normal;             // 单次传输
+    DMA_InitStructure.DMA_Priority           = DMA_Priority_Medium;         // 多通道涉及优先级
+    DMA_InitStructure.DMA_M2M                = DMA_M2M_Disable;             // 存储器到存储器使用
+
+    DMA_Init(m->channel, &DMA_InitStructure);
+    // DMA_EnablePeripheral(config,ENABLE); // 防止外设未初始化进行调用，所以需要显式的外部调用
+    return DMA_OK;
 }
 
-
+static const DMA_Mapping_t *DMA_Mapping_Find(DMA_Peripheral_e Peripheral)
+{
+    for (size_t i = 0; i < dma_mapping_sz; ++i) {
+        if (dma_mapping[i].Peripheral == Peripheral) return &dma_mapping[i];
+    }
+    return NULL;
+}
 
 /**
-* @brief  外设类型的DMA服务启动
-* @param  config: DMA初始化结构体
-* @param  state: enable-启动，disable-停止
-* @retval 
-* */
-
-void DMA_EnablePeripheral(DMA_Config_t config, FunctionalState state){
+ * @brief  外设类型的DMA服务启动
+ * @param  config: DMA初始化结构体
+ * @param  state: enable-启动，disable-停止
+ * @retval Null
+ * */
+void DMA_EnablePeripheral(DMA_Config_t config, FunctionalState State)
+{
+    const DMA_Mapping_t *m = DMA_Mapping_Find(config.Peripheral);
+    if (*m) return;
     switch (config.peripheral) {
-        case ADC1:
-            ADC_DMACmd(ADC1, state);
+        case DMA_PERIPH_ADC1:
+            ADC_DMACmd(ADC1, State);
             break;
-        case ADC2:
-            ADC_DMACmd(ADC2, state);
+        case DMA_PERIPH_ADC2:
+            ADC_DMACmd(ADC2, State);
             break;
-        case USART1:
-            USART_DMACmd(USART1, USART_DMAReq_Tx | USART_DMAReq_Rx, state);
+        case DMA_PERIPH_USART1_TX:
+            USART_DMACmd(USART1, (uint16_t)m->request_flag, State);
             break;
 
-        case USART2:
-            USART_DMACmd(USART2, USART_DMAReq_Tx | USART_DMAReq_Rx, state);
+        case DMA_PERIPH_USART1_RX:
+            USART_DMACmd(USART1, (uint16_t)m->request_flag, State);
             break;
-            // TODO: 可以继续添加case
+        case DMA_PERIPH_USART2_TX:
+            USART_DMACmd(USART2, (uint16_t)m->request_flag, State);
+            break;
+        case DMA_PERIPH_USART2_RX:
+            USART_DMACmd(USART2, (uint16_t)m->request_flag, State);
+            break;
+        case DMA_PERIPH_SPI1_TX:
+            SPI_I2S_DMACmd(SPI1, (uint16_t)m->request_flag, State);
+            break;
+        case DMA_PERIPH_SPI1_TX:
+            SPI_I2S_DMACmd(SPI1, (uint16_t)m->request_flag, State);
+            break;
+            // 可以继续添加case
     }
 }
 

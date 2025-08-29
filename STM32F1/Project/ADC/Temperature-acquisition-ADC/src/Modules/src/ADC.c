@@ -8,6 +8,13 @@
 #include "../inc/ADC.h"
 #include "../inc/MyDelay.h"
 
+#define buffersize 64
+uint32_t buffer;
+
+DMA_Config_t Config = {
+    USART1,DMA_Channel4,buffer,buffersize
+}
+
 #define ADC_Channel_Num 2 // 温度+湿度 两个通道
 
 uint16_t ADC_ConvertedValue[ADC_Channel_Num]; // DMA存储区
