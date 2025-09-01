@@ -7,11 +7,6 @@
 typedef struct {
     USART_TypeDef* USARTx;         // USART模块
     uint32_t USART_BaudRate;       // 波特率
-    uint16_t USART_WordLength;     // 数据位长度
-    uint16_t USART_StopBits;       // 停止位
-    uint16_t USART_Parity;         // 校验位
-    uint16_t USART_Mode;           // 模式
-    uint16_t USART_HardwareFlowControl; // 硬件流控制
 } USART_Config_t;
 
 
@@ -19,11 +14,11 @@ typedef struct {
 void USART_InitModule(USART_Config_t config);
 
 // TODO: 后续在Moduless 中具体实现
-void USART_SendByte(USART_TypeDef* USARTx, uint8_t data);
+/* void USART_SendByte(USART_TypeDef* USARTx, uint8_t data);
 void USART_SendString(USART_TypeDef* USARTx, const char* str);
 void USART_SendData(USART_TypeDef* USARTx, uint8_t* data, uint16_t length);
 uint8_t USART_ReceiveByte(USART_TypeDef* USARTx);
-bool USART_IsDataAvailable(USART_TypeDef* USARTx);
+bool USART_IsDataAvailable(USART_TypeDef* USARTx); */
 
 
 #endif // !__USART_H__
