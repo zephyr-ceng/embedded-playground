@@ -2,7 +2,7 @@
 
 
 
-void ADC_InitModule(ADC_Config_t config)
+void ADC_InitModule(ADC_ChannelConfig_t config)
 {
     ADC_InitTypeDef ADC_InitStructure;
 

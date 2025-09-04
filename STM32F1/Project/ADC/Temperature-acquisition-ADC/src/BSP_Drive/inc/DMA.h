@@ -2,6 +2,7 @@
 #define __DMA_H__
 
 #include "stm32f10x.h"
+#include "stm32f10x_dma.h"
 #include "stdbool.h"
 
 typedef enum {
@@ -23,6 +24,7 @@ typedef enum {
 } DMA_Peripheral_e;
 
 typedef struct {       
+    DMA_Peripheral_e Peripheral; // 外设类型
     DMA_Channel_TypeDef *channel; // DMA通道
     uint32_t request_flag;        // 请求标志
     uint32_t peripheral_addr;     // 外设基地址
@@ -39,7 +41,7 @@ const DMA_Mapping_t dma_mapping[] = {
     {DMA_PERIPH_SPI1_TX, DMA1_Channel3, SPI_I2S_DMAReq_Tx, (uint32_t)&SPI1->DR,DMA1_FLAG_TC3},
     {DMA_PERIPH_SPI1_RX, DMA1_Channel2, SPI_I2S_DMAReq_Rx, (uint32_t)&SPI1->DR,DMA1_FLAG_TC2}};
 
-static const size_t dma_mapping_sz = sizeof(dma_mapping) / sizeof(dma_mapping[0]); 
+static const uint32_t dma_mapping_sz = sizeof(dma_mapping) / sizeof(dma_mapping[0]); 
 
 typedef struct {
     DMA_Peripheral_e Peripheral; // 外设类型
@@ -47,10 +49,12 @@ typedef struct {
     uint32_t DMA_BufferSize;     // 缓冲区大小
 } DMA_Config_t;
 
-void DMA_InitChannel_PtoM(DMA_Config_t config);
-void DMA_InitChannel_MtoP(DMA_Config_t config);
+
+// DMA_Mapping_t *DMA_Mapping_Find(DMA_Peripheral_e Peripheral);
+DMA_Status_e DMA_InitChannel_PtoM(DMA_Config_t config);
+DMA_Status_e DMA_InitChannel_MtoP(DMA_Config_t config);
 void DMA_EnablePeripheral(DMA_Config_t config, FunctionalState NewState);
-void DMA_StartTransfer(DNA_config_t config);
+void DMA_StartTransfer(DMA_Config_t config);
 void DMA_StopTransfer(DMA_Config_t config);
 bool DMA_IsTransferComplete(DMA_Config_t config);
 uint32_t DMA_GetCurrDataSize(DMA_Config_t config);

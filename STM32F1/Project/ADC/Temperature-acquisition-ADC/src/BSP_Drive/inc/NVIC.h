@@ -59,10 +59,9 @@ static const uint8_t default_Priority[IRQ_MAX][2] = {
 };
 
 void NVIC_Configuration(void);
-void NVIC_EnableIRQ(IRQ_Channel_t irq);
-void NVIC_DisableIRQ(IRQ_Channel_t irq);
-void NVIC_SetPriority(IRQ_Channel_t irq, uint8_t PreemptionPriority, uint8_t SubPriority);
-void NVIC_SetDefaultPriority(IRQ_Channel_t irq);
+void NVIC_IRQ_Disable(IRQ_Channel_t irq);
+void NVIC_SetIRQ_Priority(IRQ_Channel_t irq, uint8_t PreemptionPriority, uint8_t SubPriority);
+void NVIC_SetIRQ_DefaultPriority(IRQ_Channel_t irq);
 void NVIC_SystemSafeDelay(uint32_t ms);
 
 #endif // !__NVIC_H__

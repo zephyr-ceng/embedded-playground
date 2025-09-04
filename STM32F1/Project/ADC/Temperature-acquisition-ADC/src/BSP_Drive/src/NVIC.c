@@ -6,22 +6,7 @@ void NVIC_Configuration(void)
 }
 
 
-// TODO: NVIC函数需要删减
-
-void NVIC_EnableIRQ(IRQ_Channel_t irq){
-    if(irq < IRQ_MAX){
-        NVIC_InitTypeDef NVIC_InitStructure;
-        NVIC_InitStructure.NVIC_IRQChannel = IRQ_Channel_Mapping[irq];
-        NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-        NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = NVIC_GetPriority(IRQ_Channel_Mapping[irq]) >> 4; // 获取当前优先级
-        NVIC_InitStructure.NVIC_IRQChannelSubPriority = NVIC_GetPriority(IRQ_Channel_Mapping[irq]) & 0x0F; // 获取当前子优先级
-
-        NVIC_Init(&NVIC_InitStructure);
-    }
-}
-
-
-void NVIC_DisableIRQ(IRQ_Channel_t irq){
+void NVIC_IRQ_Disable(IRQ_Channel_t irq){
     if(irq < IRQ_MAX){
         NVIC_InitTypeDef NVIC_InitStructure;
         NVIC_InitStructure.NVIC_IRQChannel = IRQ_Channel_Mapping[irq];
@@ -34,7 +19,14 @@ void NVIC_DisableIRQ(IRQ_Channel_t irq){
 }
 
 
-void NVIC_SetPriority(IRQ_Channel_t irq, uint8_t preemptionPriority, uint8_t subPriority){
+/**
+* @brief  设置指定中断的优先级
+* @param  irq: 中断通道
+* @param  preemptionPriority: 抢占优先级
+* @param  subPriority: 子优先级
+* @retval Null
+* */
+void NVIC_SetIRQ_Priority(IRQ_Channel_t irq, uint8_t preemptionPriority, uint8_t subPriority){
     if(irq < IRQ_MAX){
         NVIC_InitTypeDef NVIC_InitStructure;
         NVIC_InitStructure.NVIC_IRQChannel = IRQ_Channel_Mapping[irq];
@@ -47,7 +39,12 @@ void NVIC_SetPriority(IRQ_Channel_t irq, uint8_t preemptionPriority, uint8_t sub
 }
 
 
-void NVIC_SetPriority_Default(IRQ_Channel_t irq){
+/**
+* @brief  设置指定中断为默认优先级
+* @param  irq: 中断通道
+* @retval Null
+* */
+void NVIC_SetIRQ_DefaultPriority(IRQ_Channel_t irq){
     if(irq < IRQ_MAX){
         NVIC_InitTypeDef NVIC_InitStructure;
         NVIC_InitStructure.NVIC_IRQChannel = IRQ_Channel_Mapping[irq];
@@ -60,6 +57,11 @@ void NVIC_SetPriority_Default(IRQ_Channel_t irq){
 }
 
 
+/**
+* @brief  系统安全延时函数
+* @param  delay: 延时时间，单位ms
+* @retval Null
+* */
 void NVIC_SystemSafeDelay(uint32_t delay){
     // 利用SysTick计时实现延时
     uint32_t start_tick = SysTick->VAL;
