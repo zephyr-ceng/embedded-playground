@@ -8,7 +8,7 @@
  * @param  Peripheral: 外设类型
  * @retval DMA_Mapping_t*: 查找到的映射表指针,未找到返回NULL
  * */
-DMA_Mapping_t *DMA_Mapping_Find(DMA_Peripheral_e Peripheral)
+const DMA_Mapping_t *DMA_Mapping_Find(DMA_Peripheral_e Peripheral)
 {
     for (size_t i = 0; i < dma_mapping_sz; ++i) {
         if (dma_mapping[i].Peripheral == Peripheral) return &dma_mapping[i];
@@ -174,7 +174,7 @@ bool DMA_IsTransferComplete(DMA_Config_t config)
 uint32_t DMA_GetCurrDataSize(DMA_Config_t config)
 {
     const DMA_Mapping_t *m = DMA_Mapping_Find(config.Peripheral);
-    if (m == DMA_PERIPH_SPI1_RX || m == DMA_PERIPH_USART1_RX || m == DMA_PERIPH_USART2_RX)
+    if (m->Peripheral == DMA_PERIPH_SPI1_RX || m->Peripheral == DMA_PERIPH_USART1_RX || m->Peripheral == DMA_PERIPH_USART2_RX)
         return DMA_GetCurrDataCounter(m->channel);
     return 0;
 }

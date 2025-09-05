@@ -4,7 +4,7 @@
 
 #include "stm32f10x.h"
 #include "stm32f10x_i2c.h"
-
+#include "stddef.h"
 
 #define I2C_Speed 400000 // 100kHz standard mode
 #define I2C_OWN_ADDRESS7 0x00 // 本机地址

@@ -29,7 +29,7 @@ I2C_Status_t I2C_InitModule(I2C_TypeDef *I2Cx)
 }
 
 // I2C 外设使能控制
-void I2C_Cmd_Set(I2C_TypeDef *I2Cx, FunctionalState NewState)
+void I2C_Set_Cmd(I2C_TypeDef *I2Cx, FunctionalState NewState)
 {
     if (I2Cx == NULL) return I2C_ERR_PARAM; // 参数错误
     if (NewState != DISABLE) {
@@ -104,8 +104,9 @@ I2C_Status_t I2C_Slave_Stop(I2C_TypeDef *I2Cx, uint32_t timeout)
             return I2C_ERR_TIMEOUT; // Timeout
         }
     }
-    (void)I2Cx->SR1;   // 读SR1清除STOPF标志, SR2没有STOPF标志，主要用于辅助状态，如BUSY
-    CR1 |= I2C_CR1_PE; // 重新使能I2C外设
+    (void)I2Cx->SR1;            // 读SR1清除STOPF标志, SR2没有STOPF标志，主要用于辅助状态，如BUSY
+    I2C_Set_Cmd(I2Cx, DISABLE); // 先关闭I2C外设
+    I2C_Set_Cmd(I2Cx, ENABLE);  // 重新使能I2C外设
     return I2C_OK;
 }
 
@@ -266,20 +267,20 @@ I2C_Status_t I2C_Master_ReceivesData(I2C_TypeDef *I2Cx, uint8_t addr, uint8_t *d
 
         data[i] = I2C_ReceiveData(I2Cx); // 接收数据字节
     }
-    I2C_AcknowledgeConfig(I2Cx, ENABLE);    // 恢复应答功能
+    I2C_AcknowledgeConfig(I2Cx, ENABLE);     // 恢复应答功能
     status = I2C_Master_Stop(I2Cx, timeout); // 发送停止信号
     if (status != I2C_OK) return status;
     return I2C_OK;
 }
 
 /**
-* @brief  从机I2C设备发送数据(阻塞模式)
-* @param  I2Cx: 指向I2C外设的指针
-* @param  data: 指向要发送的数据的指针
-* @param  len: 要发送的数据长度
-* @param  timeout: 超时时间
-* @retval I2C状态（I2C_OK, I2C_ERR_TIMEOUT, I2C_ERR_PARAM）
-* */
+ * @brief  从机I2C设备发送数据(阻塞模式)
+ * @param  I2Cx: 指向I2C外设的指针
+ * @param  data: 指向要发送的数据的指针
+ * @param  len: 要发送的数据长度
+ * @param  timeout: 超时时间
+ * @retval I2C状态（I2C_OK, I2C_ERR_TIMEOUT, I2C_ERR_PARAM）
+ * */
 I2C_Status_t I2C_Slave_TransmitData(I2C_TypeDef *I2Cx, uint8_t *data, uint16_t len, uint32_t timeout)
 {
     uint32_t t = timeout;
