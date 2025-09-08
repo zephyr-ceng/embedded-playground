@@ -29,7 +29,7 @@ I2C_Status_t I2C_InitModule(I2C_TypeDef *I2Cx)
 }
 
 // I2C 外设使能控制
-void I2C_Set_Cmd(I2C_TypeDef *I2Cx, FunctionalState NewState)
+I2C_Status_t I2C_Set_Cmd(I2C_TypeDef *I2Cx, FunctionalState NewState)
 {
     if (I2Cx == NULL) return I2C_ERR_PARAM; // 参数错误
     if (NewState != DISABLE) {
@@ -37,6 +37,7 @@ void I2C_Set_Cmd(I2C_TypeDef *I2Cx, FunctionalState NewState)
     } else {
         I2C_Cmd(I2Cx, DISABLE);
     }
+    return I2C_OK;
 }
 
 /****************************************  I2C基础封装 *******************************************/
@@ -185,7 +186,7 @@ I2C_Status_t I2C_SendByte(I2C_TypeDef *I2Cx, uint8_t data, uint32_t timeout)
 I2C_Status_t I2C_Master_TransmitData(I2C_TypeDef *I2Cx, uint8_t addr, uint8_t *data, uint16_t len, uint32_t timeout)
 {
     I2C_Status_t status;
-    uint32_t t = timeout;
+    // uint32_t t = timeout;
     if (I2Cx == NULL || data == NULL || len == 0) return I2C_ERR_PARAM;       // 参数错误
     if (I2C_GetFlagStatus(I2Cx, I2C_FLAG_BUSY) != RESET) return I2C_ERR_BUSY; // 总线忙
 
@@ -217,7 +218,7 @@ I2C_Status_t I2C_Master_TransmitData_WithRetry(I2C_TypeDef *I2Cx, uint8_t addr, 
 {
     I2C_Status_t status;
     do {
-        status = I2C_Send_Data(I2Cx, addr, data, len, timeout);
+        status = I2C_Master_TransmitData(I2Cx, addr, data, len, timeout);
         if (status == I2C_OK) break; // 成功则退出
         retry--;
     } while (retry > 0);

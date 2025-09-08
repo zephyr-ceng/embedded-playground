@@ -1,8 +1,6 @@
 #include "../inc/DMA.h"
 #include "string.h"
 
-
-
 /**
  * @brief  根据外设类型查找DMA映射表
  * @param  Peripheral: 外设类型
@@ -32,6 +30,7 @@ DMA_Status_e DMA_InitChannel_PtoM(DMA_Config_t config)
     DMA_InitTypeDef DMA_InitStructure;
 
     // 开启DMA时钟
+
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 
     DMA_DeInit(m->channel);
@@ -86,8 +85,6 @@ DMA_Status_e DMA_InitChannel_MtoP(DMA_Config_t config)
     return DMA_OK;
 }
 
-
-
 /**
  * @brief  外设类型的DMA服务启动
  * @param  config: DMA初始化结构体
@@ -130,7 +127,7 @@ void DMA_EnablePeripheral(DMA_Config_t config, FunctionalState NewState)
 
 /**
  * @brief  设置缓冲区大小并重启DMA服务
- * @param  DMAy_Channelx: DMA通道
+ * @param  config: DMA初始化结构体
  * @param  bufferSize: 设置缓冲区大小
  * @retval Null
  * */
@@ -143,7 +140,7 @@ void DMA_StartTransfer(DMA_Config_t config)
 
 /**
  * @brief  停止DMA服务,并清理标志位
- * @param  DMAy_Channelx: DMA通道
+ * @param  config: DMA初始化结构体
  * @retval Null
  * */
 void DMA_StopTransfer(DMA_Config_t config)
@@ -156,7 +153,7 @@ void DMA_StopTransfer(DMA_Config_t config)
 
 /**
  * @brief  DMA 通道传输状态检测
- * @param  DMAy_Channelx: DMA通道
+ * @param  config: DMA初始化结构体
  * @retval True: 传输完成
  * @retval False: 传输失败
  * */
@@ -167,10 +164,10 @@ bool DMA_IsTransferComplete(DMA_Config_t config)
 }
 
 /**
-* @brief  获取当前DMA传输剩余数据大小
-* @param config: DMA初始化结构体  
-* @retval uint32_t: 当前剩余数据大小
-* */
+ * @brief  获取当前DMA传输剩余数据大小
+ * @param config: DMA初始化结构体
+ * @retval uint32_t: 当前剩余数据大小
+ * */
 uint32_t DMA_GetCurrDataSize(DMA_Config_t config)
 {
     const DMA_Mapping_t *m = DMA_Mapping_Find(config.Peripheral);

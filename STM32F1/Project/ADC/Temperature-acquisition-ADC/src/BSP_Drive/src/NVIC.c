@@ -62,7 +62,7 @@ void NVIC_SetIRQ_DefaultPriority(IRQ_Channel_t irq){
 * @param  delay: 延时时间，单位ms
 * @retval Null
 * */
-void NVIC_SystemSafeDelay(uint32_t delay){
+void NVIC_SystemSafeDelay(uint32_t ms){
     // 利用SysTick计时实现延时
     uint32_t start_tick = SysTick->VAL;
     uint32_t ticks_needed = (SystemCoreClock / 1000) * ms;

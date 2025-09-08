@@ -23,6 +23,7 @@ typedef enum {
     // 持续添加
 } DMA_Peripheral_e;
 
+
 typedef struct {       
     DMA_Peripheral_e Peripheral; // 外设类型
     DMA_Channel_TypeDef *channel; // DMA通道
@@ -33,13 +34,14 @@ typedef struct {
 
 const DMA_Mapping_t dma_mapping[] = {
     {DMA_PERIPH_ADC1, DMA1_Channel1, 0, (uint32_t)&ADC1->DR,DMA1_FLAG_TC1},
-    {DMA_PERIPH_ADC2, DMA1_Channel2, 0, (uint32_t)&ADC2->DR,DMA1_FLAG_TC2},
+    {DMA_PERIPH_ADC2, DMA1_Channel1, 0, (uint32_t)&ADC2->DR,DMA1_FLAG_TC2},
     {DMA_PERIPH_USART1_TX, DMA1_Channel4, USART_DMAReq_Tx, (uint32_t)&USART1->DR,DMA1_FLAG_TC4},
     {DMA_PERIPH_USART1_RX, DMA1_Channel5, USART_DMAReq_Rx, (uint32_t)&USART1->DR,DMA1_FLAG_TC5},
     {DMA_PERIPH_USART2_TX, DMA1_Channel7, USART_DMAReq_Tx, (uint32_t)&USART2->DR,DMA1_FLAG_TC7},
     {DMA_PERIPH_USART2_RX, DMA1_Channel6, USART_DMAReq_Rx, (uint32_t)&USART2->DR,DMA1_FLAG_TC6},
-    {DMA_PERIPH_SPI1_TX, DMA1_Channel3, SPI_I2S_DMAReq_Tx, (uint32_t)&SPI1->DR,DMA1_FLAG_TC3},
-    {DMA_PERIPH_SPI1_RX, DMA1_Channel2, SPI_I2S_DMAReq_Rx, (uint32_t)&SPI1->DR,DMA1_FLAG_TC2}};
+    {DMA_PERIPH_SPI1_RX, DMA1_Channel2, SPI_I2S_DMAReq_Rx, (uint32_t)&SPI1->DR,DMA1_FLAG_TC2},
+    {DMA_PERIPH_SPI1_TX, DMA1_Channel3, SPI_I2S_DMAReq_Tx, (uint32_t)&SPI1->DR,DMA1_FLAG_TC3}
+};
 
 static const uint32_t dma_mapping_sz = sizeof(dma_mapping) / sizeof(dma_mapping[0]); 
 
