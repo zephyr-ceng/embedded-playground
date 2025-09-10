@@ -1,5 +1,5 @@
 {
-  "name": "STM32F103-Demo",
+  "name": "Temperature",
   "type": "ARM",
   "dependenceList": [],
   "srcDirs": [
@@ -11,7 +11,7 @@
   "packDir": ".pack/Keil/STM32F1xx_DFP.2.3.0",
   "miscInfo": {
     "lastBuildTime": 1608695075742,
-    "uid": "c312702c066611fb872a119a774d28db"
+    "uid": "5f3842baf34cacb2a16601c52a5bfb7d"
   },
   "virtualFolder": {
     "name": "<virtual_root>",
@@ -27,10 +27,8 @@
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_crc.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_dac.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_dbgmcu.c",
-        "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.c",
-        "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_i2c.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_iwdg.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c",
         "hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_rtc.c",
