@@ -1,15 +1,16 @@
 #include "../inc/SerialPort_USART_DMA.h"
 
-#define USART_RX_BUFFER_SIZE 64
-#define USART_TX_BUFFER_SIZE 64
+#define USART_RX_BUFFER_SIZE 256
+#define USART_TX_BUFFER_SIZE 256
 
 uint32_t RX_BUFFER[USART_RX_BUFFER_SIZE];
 uint32_t TX_BUFFER[USART_TX_BUFFER_SIZE];
-
+uint8_t ReceiveFlag = 0;
+uint8_t TransmitFlag = 0;
 /******************************* 初始化 *******************************/
 
 // GPIO 初始化
-void USART_GPIO_Init(void)
+void USART_Init_GPIOConfig(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 
@@ -52,7 +53,7 @@ void USART_Init_Config(uint32_t baudrate)
 }
 
 // DMA 初始化
-void DMA_Init_Config(void)
+void USART_Init_DMAConfig(void)
 {
     DMA_InitTypeDef DMA_InitStructure;
 
@@ -92,7 +93,7 @@ void DMA_Init_Config(void)
 }
 
 // NVIC 初始化
-void NVIC_Init_Config(void)
+void USART_Init_NVICConfig(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure;
 
@@ -115,6 +116,13 @@ void NVIC_Init_Config(void)
 }
 
 /******************************* 功能实现 *******************************/
+void USART_InitModule(uint32_t baudrate)
+{
+    USART_Init_GPIOConfig();
+    USART_Init_Config(baudrate);
+    USART_Init_DMAConfig();
+    USART_Init_NVICConfig();
+}
 
 // USART 接收中断服务程序
 void USART1_IRQHandler(void)
@@ -123,48 +131,60 @@ void USART1_IRQHandler(void)
         (void)USART1->SR;                // 读取 SR 寄存器清除中断标志
         (void)USART1->DR;                // 读取 DR 寄存器清除中断标志
         DMA_Cmd(DMA1_Channel5, DISABLE); // 关闭 DMA 通道
-        uint16_t received_length = USART_RX_BUFFER_SIZE - DMA_GetCurrDataCounter(DMA1_Channel5);
-        /* code callback函数 */
-
-        DMA_SetCurrDataCounter(DMA1_Channel5, USART_RX_BUFFER_SIZE); // 重设数据计数器
-        DMA_Cmd(DMA1_Channel5, ENABLE);                              // 重新开启 DMA 通道
+        // uint16_t received_length = USART_RX_BUFFER_SIZE - DMA_GetCurrDataCounter(DMA1_Channel5);
+        ReceiveFlag = 1;
     }
 }
 
+/**
+* @brief  接收数据
+* @param  data:存储接收的数据
+* @retval NULL
+* */
+void USART_ReceiveData_DMA(uint8_t *data, uint8_t len)
+{
+    if (ReceiveFlag) {
+        uint16_t received_length = USART_RX_BUFFER_SIZE - DMA_GetCurrDataCounter(DMA1_Channel5);
+        if (received_length <= len && (data[received_length - 1] == '\n' || data[received_length - 1] == '\r')) {
+            memcpy(data, RX_BUFFER, received_length);
+            memset(RX_BUFFER,0,sizeof(RX_BUFFER));
+            DMA_SetCurrDataCounter(DMA1_Channel5, USART_RX_BUFFER_SIZE); // 重设数据计数器
+            DMA_Cmd(DMA1_Channel5, ENABLE);                              // 重新开启 DMA 通道
+            ReceiveFlag = 0;
+        }
+        // TODO: 接收数据不完整和接收数据长度超SIZE限制
+    }
+}
+
+// 发送中断
 void DMA1_Channel4_IRQHandler(void)
 {
     if (DMA_GetITStatus(DMA1_IT_TC4) != RESET) {
         DMA_ClearITPendingBit(DMA1_IT_TC4); // 清除中断标志
         DMA_Cmd(DMA1_Channel4, DISABLE);    // 关闭 DMA 通道
-        /* code 发送完成回调函数 */
+        TransmitFlag = 0;
     }
 }
 
+/**
+* @brief  发送数据
+* @param  data: 要发送的数据
+* @retval NULL
+* */
 void USART_SendData_DMA(uint8_t *data, uint8_t length)
 {
-    if (length > USART_TX_BUFFER_SIZE) return; // 防止溢出
-
-    // 将数据复制到 TX_BUFFER
-    for (uint8_t i = 0; i < length; i++)
-        TX_BUFFER[i] = data[i];
-
-    // 配置 DMA 传输大小
-    DMA_SetCurrDataCounter(DMA1_Channel4, USART_TX_BUFFER_SIZE);
-
-    // 启动 DMA 传输
-    DMA_Cmd(DMA1_Channel4, ENABLE);
+    if (TransmitFlag == 0) {
+        // 确保len小于等于USART_TX_BUFFER_SIZE
+        uint8_t len = length < USART_TX_BUFFER_SIZE ? length : USART_TX_BUFFER_SIZE;
+        if (data[len - 1] != '\n' && data[len - 1] != '\r') {
+            if (len < USART_TX_BUFFER_SIZE) {
+                data[len] = '\n'; // 添加 '\n' 作为结束符
+                len++;
+            }
+        }
+        memcpy(TX_BUFFER, data, len);
+        DMA_SetCurrDataCounter(DMA1_Channel4, len); // 设置发送长度
+        DMA_Cmd(DMA1_Channel4, ENABLE);
+        TransmitFlag = 1;  // DMA发送通道启动状态
+    }
 }
-
-// TODO:长数据的传输 & CallBack函数
-
-
-uint8_t USART_ReceiveCallBack(uint32_t *data, uint8_t length)
-{
-    if (length > USART_RX_BUFFER_SIZE) return 0; // 防止溢出
-
-    for (uint8_t i = 0; i < length; i++)
-        data[i] = RX_BUFFER[i];
-    USART_SendData_DMA(RX_BUFFER, length); // 回发数据
-    return length;
-}
-
