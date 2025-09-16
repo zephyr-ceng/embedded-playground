@@ -91,15 +91,16 @@ uint8_t I2C_ReadDataByte(uint8_t ack)
     return I2C_ReceiveData(I2C2);
 }
 
-// TODO: 删除I2C相关函数的错误处理或者添加OLED_WriteCommand的错误处理
+// 
 void OLED_WriteCommand(uint8_t cmd)
 {
     // SS1306 I2C传输协议要求传输顺序：设备地址，控制字节，命令
-    I2C_Start(100);                                              // 起始信号
-    I2C_SendAddr(OLED_I2C_ADDR, I2C_Direction_Transmitter, 100); // 设备地址
-    I2C_SendDataByte(0x00);                                      // 0x00=控制字节，0x40=数据
-    I2C_SendDataByte(cmd);                                       // 命令
-    I2C_Stop();                                                  // 停止信号
+    (void)I2C_Start(100);                                              // 起始信号
+    (void)I2C_SendAddr(OLED_I2C_ADDR, I2C_Direction_Transmitter, 100); // 设备地址
+    (void)I2C_SendDataByte(0x00);                                      // 0x00=控制字节，0x40=数据
+    (void)I2C_SendDataByte(cmd);                                       // 命令
+    (void)I2C_Stop();                                                  // 停止信号
+    // 使用void 可忽略错误，不需要传入底层服务，可以保留错误信息，调试和日志记录
 }
 
 void OLED_WriteData(uint8_t data)
