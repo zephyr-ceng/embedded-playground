@@ -8,7 +8,7 @@
 uint8_t buffer[]    = "Hello STM32";
 uint8_t RXdata[1000] = {0}; // Adjust size as needed
 
-void my_rx_handler(uint32_t *buf, uint16_t len){
+void my_rx_handler(uint8_t *buf, uint16_t len){
     USART_TransmitData(buf,len);
 }
 

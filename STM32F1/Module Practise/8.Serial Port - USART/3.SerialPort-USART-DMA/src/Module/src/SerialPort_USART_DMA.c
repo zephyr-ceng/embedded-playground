@@ -7,7 +7,7 @@
 
 #include "../inc/SerialPort_USART_DMA.h"
 
-uint32_t RX_BUFFER[USART_RX_BUFFER_SIZE];
+uint8_t RX_BUFFER[USART_RX_BUFFER_SIZE];
 uint32_t TX_BUFFER[USART_TX_BUFFER_SIZE];
 static usart_rx_callback_t rx_callback = 0;
 
@@ -94,7 +94,7 @@ void USART_Init_DMAConfig(void)
     DMA_InitStructure.DMA_MemoryBaseAddr     = (uint32_t)TX_BUFFER;
     DMA_InitStructure.DMA_MemoryDataSize     = DMA_MemoryDataSize_Byte;
     DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Enable;
-    DMA_InitStructure.DMA_Mode               = DMA_Mode_Normal; // 单次传输
+    DMA_InitStructure.DMA_Mode               = DMA_Mode_Circular; // 单次传输
     DMA_InitStructure.DMA_M2M                = DMA_M2M_Disable; // 禁用内存到内存
     DMA_InitStructure.DMA_BufferSize         = USART_TX_BUFFER_SIZE;
     DMA_InitStructure.DMA_DIR                = DMA_DIR_PeripheralDST; // 内存到外设
@@ -171,9 +171,9 @@ void USART1_IRQHandler(void)
 * @retval 1： 传输失败
 * @retval 0： 传输成功
 * */
-uint8_t USART_TransmitData(uint16_t *data, uint16_t len)
+uint8_t USART_TransmitData(uint8_t *data, uint16_t len)
 {
-    if (DMA_GetCurrDataCounter(DMA1_Channel4) != DISABLE) return 1;
+    // if (DMA_GetCurrDataCounter(DMA1_Channel4) != DISABLE) return 1;
     if (len == 0 || len > USART_TX_BUFFER_SIZE) return 1;
     if (data[len - 1] != '\n' && data[len - 1] != '\r') {
         if (len < USART_TX_BUFFER_SIZE) {
