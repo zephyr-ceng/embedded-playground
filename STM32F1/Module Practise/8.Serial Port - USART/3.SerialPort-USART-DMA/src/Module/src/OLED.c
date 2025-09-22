@@ -162,6 +162,15 @@ void OLED_ShowString(uint8_t Line, uint8_t Column, char *String)
 	}
 }
 
+void OLED_ShowStringLen(uint8_t Line,uint8_t Column, char *String, uint8_t Length){
+    uint8_t i;
+    for (i = 0; i < Length; i++)
+    {
+        OLED_ShowChar(Line,Column+i,String[i]);
+        if(String[i] == '\0') break;
+    }
+}
+
 /**
   * @brief  OLED次方函数
   * @retval 返回值等于X的Y次方

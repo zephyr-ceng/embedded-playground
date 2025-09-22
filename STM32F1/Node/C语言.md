@@ -24,10 +24,10 @@
 
     ```C
     // global.c
-    int value = 20;
+    int value = 20; // 初始化后才分配内存空间
     
     // global.h
-    extern int value;
+    extern int value; // 此处未分配内存空间
     
     // .c
     #include "global.h"
@@ -220,7 +220,31 @@
   int max(int x, int y) { return x>y ? x : y; }
   int (*fp)(int,int) = max;  // 定义函数指针 fp 指向 max 函数
   int result = fp(3, 5);     // 通过函数指针调用 max，结果为 5:contentReference[oaicite:35]{index=35}  
+  
+  // 回调函数即函数指针
+  // 嵌入式写法
+  typedef void  (*callback_t)(int *array); // .h 定义函数格式
+  
+  static callback_t callback_cb = NULL; // .c 定义全局变量指针
+  // 注册回调函数
+  void RegisterCallback(callback_t cb){
+      callback_cb = cb;
+  }
+  // 调用注册函数
+  if(callback_cb)
+      callback_cb(array);
+  
+  // 由用户提供回调函数
+  void function_Name(int *array){
+      print("%d",array[0]);
+  }
+  RegisterCallback(function_Name); // 注册
+  
+  
+  
   ```
+
+  
 
 - 指针函数：返回指针的函数`int* func(int x)`
 
