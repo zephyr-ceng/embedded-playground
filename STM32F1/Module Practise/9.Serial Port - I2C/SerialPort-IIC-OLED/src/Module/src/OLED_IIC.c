@@ -1,16 +1,18 @@
 #include "./Module/inc/OLED_IIC.h"
 #include "./Module/inc/OLED_Font.h"
 
-#define I2C_Speed        400000 // 100kHz standard mode
+#define I2C_Speed        400000 // 400kHz standard mode
 #define I2C_OWN_ADDRESS7 0x00   // 本机地址
 #define OLED_I2C_ADDR    0x78   // 八位地址
 
+
+// I2C初始化
 void I2C_InitConfiguration()
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     I2C_InitTypeDef I2C_InitStructure;
     // GPIO初始化
-    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_OD; // 设置GPIO模式为开漏输出
+    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF_OD; // 设置GPIO模式为复用开漏输出
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_11 | GPIO_Pin_12;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
@@ -59,6 +61,7 @@ I2C_Status_t I2C_Start(uint32_t timeout)
 I2C_Status_t I2C_Stop()
 {
     I2C_GenerateSTOP(I2C2, ENABLE);
+    return I2C_OK;
 }
 
 I2C_Status_t I2C_SendAddr(uint8_t addr, uint32_t direction, uint32_t timeout)
@@ -77,21 +80,9 @@ I2C_Status_t I2C_SendAddr(uint8_t addr, uint32_t direction, uint32_t timeout)
 I2C_Status_t I2C_SendDataByte(uint8_t data)
 {
     I2C_SendData(I2C2, data);
-    return I2C_WaitEvent(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED, 10);
+    return I2C_WaitEvent(I2C_EVENT_MASTER_BYTE_TRANSMITTED, 10);
 }
 
-uint8_t I2C_ReadDataByte(uint8_t ack)
-{
-    if (ack)
-        I2C_AcknowledgeConfig(I2C2, ENABLE);
-    else
-        I2C_AcknowledgeConfig(I2C2, DISABLE);
-
-    I2C_WaitEvent(I2C2, I2C_EVENT_MASTER_BYTE_RECEIVED);
-    return I2C_ReceiveData(I2C2);
-}
-
-// 
 void OLED_WriteCommand(uint8_t cmd)
 {
     // SS1306 I2C传输协议要求传输顺序：设备地址，控制字节，命令
@@ -105,19 +96,21 @@ void OLED_WriteCommand(uint8_t cmd)
 
 void OLED_WriteData(uint8_t data)
 {
-    I2C_Start(100);
-    I2C_SendAddr(OLED_I2C_ADDR, I2C_Direction_Transmitter, 100);
-    I2C_SendDataByte(0x40);
-    I2C_SendDataByte(data);
-    I2C_Stop();
+    (void)I2C_Start(100);
+    (void)I2C_SendAddr(OLED_I2C_ADDR, I2C_Direction_Transmitter, 100);
+    (void)I2C_SendDataByte(0x40);
+    (void)I2C_SendDataByte(data);
+    (void)I2C_Stop();
 }
 
+// 设置光标位置
 void OLED_SetCursor(uint8_t Y, uint8_t X)
 {
     OLED_WriteCommand(0xB0 | Y);                 // 设置Y位置
     OLED_WriteCommand(0x10 | ((X & 0xF0) >> 4)); // 设置X位置高4位
     OLED_WriteCommand(0x00 | (X & 0x0F));        // 设置X位置低4位
 }
+
 
 /**
  * @brief  OLED清屏
