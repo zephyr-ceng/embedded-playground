@@ -5,7 +5,6 @@
 #define I2C_OWN_ADDRESS7 0x00   // 本机地址
 #define OLED_I2C_ADDR    0x78   // 八位地址
 
-
 // I2C初始化
 void I2C_InitConfiguration()
 {
@@ -67,14 +66,11 @@ I2C_Status_t I2C_Stop()
 I2C_Status_t I2C_SendAddr(uint8_t addr, uint32_t direction, uint32_t timeout)
 {
     if ((addr & 0xFE) != addr) addr >>= 1; // 确保地址为七位
-    I2C_Send7bitAddress(I2C2, addr, direction);
-    if (direction == I2C_Direction_Transmitter) {
-        return I2C_WaitEvent(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED, 10);
-    } else if (direction == I2C_Direction_Receiver) {
-        return I2C_WaitEvent(I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED, 10);
-    } else {
+    if (direction != I2C_Direction_Transmitter || direction != I2C_Direction_Receiver) {
         return I2C_ERR_PARAM; // 参数错误
     }
+    I2C_Send7bitAddress(I2C2, addr, direction);
+    return I2C_WaitEvent(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED, 10);
 }
 
 I2C_Status_t I2C_SendDataByte(uint8_t data)
@@ -83,24 +79,35 @@ I2C_Status_t I2C_SendDataByte(uint8_t data)
     return I2C_WaitEvent(I2C_EVENT_MASTER_BYTE_TRANSMITTED, 10);
 }
 
-void OLED_WriteCommand(uint8_t cmd)
+uint8_t OLED_WriteCommand(uint8_t cmd)
 {
     // SS1306 I2C传输协议要求传输顺序：设备地址，控制字节，命令
-    (void)I2C_Start(100);                                              // 起始信号
-    (void)I2C_SendAddr(OLED_I2C_ADDR, I2C_Direction_Transmitter, 100); // 设备地址
-    (void)I2C_SendDataByte(0x00);                                      // 0x00=控制字节，0x40=数据
-    (void)I2C_SendDataByte(cmd);                                       // 命令
-    (void)I2C_Stop();                                                  // 停止信号
-    // 使用void 可忽略错误，不需要传入底层服务，可以保留错误信息，调试和日志记录
+    I2C_Status_t temp;
+    temp = I2C_Start(100); // 起始信号
+    if (temp != I2C_OK) return 0;
+    temp = I2C_SendAddr(OLED_I2C_ADDR, I2C_Direction_Transmitter, 100); // 设备地址
+    if (temp != I2C_OK) return 0;
+    temp = I2C_SendDataByte(0x00); // 0x00=控制字节，0x40=数据
+    if (temp != I2C_OK) return 0;
+    temp = I2C_SendDataByte(cmd); // 命令
+    if (temp != I2C_OK) return 0;
+    I2C_Stop(); // 停止信号
+    return 1;
 }
 
-void OLED_WriteData(uint8_t data)
+uint8_t OLED_WriteData(uint8_t data)
 {
-    (void)I2C_Start(100);
-    (void)I2C_SendAddr(OLED_I2C_ADDR, I2C_Direction_Transmitter, 100);
-    (void)I2C_SendDataByte(0x40);
-    (void)I2C_SendDataByte(data);
-    (void)I2C_Stop();
+    I2C_Status_t temp;
+    temp = I2C_Start(100);
+    if (temp != I2C_OK) return 0;
+    temp = I2C_SendAddr(OLED_I2C_ADDR, I2C_Direction_Transmitter, 100);
+    if (temp != I2C_OK) return 0;
+    temp = I2C_SendDataByte(0x40);
+    if (temp != I2C_OK) return 0;
+    temp = I2C_SendDataByte(data);
+    if (temp != I2C_OK) return 0;
+    I2C_Stop();
+    return 1;
 }
 
 // 设置光标位置
@@ -110,7 +117,6 @@ void OLED_SetCursor(uint8_t Y, uint8_t X)
     OLED_WriteCommand(0x10 | ((X & 0xF0) >> 4)); // 设置X位置高4位
     OLED_WriteCommand(0x00 | (X & 0x0F));        // 设置X位置低4位
 }
-
 
 /**
  * @brief  OLED清屏

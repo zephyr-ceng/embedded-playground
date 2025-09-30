@@ -223,7 +223,7 @@
   
   // 回调函数即函数指针
   // 嵌入式写法
-  typedef void  (*callback_t)(int *array); // .h 定义函数格式
+  typedef void  (*callback_t)(int *arr); // .h 定义函数格式
   
   static callback_t callback_cb = NULL; // .c 定义全局变量指针
   // 注册回调函数
@@ -231,11 +231,11 @@
       callback_cb = cb;
   }
   // 调用注册函数
-  if(callback_cb)
+  if(callback_cb != NULL)
       callback_cb(array);
   
   // 由用户提供回调函数
-  void function_Name(int *array){
+  void function_Name(int *arr){
       print("%d",array[0]);
   }
   RegisterCallback(function_Name); // 注册
