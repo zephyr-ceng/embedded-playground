@@ -12,8 +12,10 @@
 #include "stdio.h"
 
 void ADC_InitModule();
-uint16_t ADC_GetValue_Reg();
-uint16_t ADC_GetValue_Inject();
-uint16_t ADC_GetAverage(uint8_t count);
-float ADC_GetVoltage();
+void ADC_GetReg_Illumination(uint8_t count);
+void ADC_GetReg_Temperature(uint8_t count);
+void ADC_GetInject_Humidity(uint8_t count);
+float ADC_GetVoltage_Illumination(uint8_t count);
+float ADC_GetVoltage_Temperature(uint8_t count);
+float ADC_GetVoltage_Humidity(uint8_t count);
 #endif // !__ADC_H__
