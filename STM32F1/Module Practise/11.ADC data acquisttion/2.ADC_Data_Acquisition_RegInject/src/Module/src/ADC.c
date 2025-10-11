@@ -30,12 +30,11 @@ void ADC_Configuration(void)
 {
     ADC_InitTypeDef ADC_InitStructure;
     DMA_InitTypeDef DMA_InitStructure;
-    // 时钟使能及分频
+
+    // ADC配置
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
     RCC_ADCCLKConfig(RCC_PCLK2_Div6);
-
     ADC_DeInit(ADC1); // 复位ADC1
-
     ADC_InitStructure.ADC_Mode               = ADC_Mode_RegInjecSimult;   // 同时采样 reg（regular）为规则通道  in(injection)为注入通道
     ADC_InitStructure.ADC_ScanConvMode       = ENABLE;                    // 多规则通道时设置ENABLE，单一规则通道时设置DISABLE，injection通道不受此参数影响
     ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;                    // 连续转换
@@ -43,20 +42,20 @@ void ADC_Configuration(void)
     ADC_InitStructure.ADC_NbrOfChannel       = 3;                         //  规则转换通道数目
     ADC_InitStructure.ADC_ExternalTrigConv   = ADC_ExternalTrigConv_None; // 软件触发 可选择定时器触发等
     ADC_Init(ADC1, &ADC_InitStructure);
-    ADC_Cmd(ADC1, ENABLE);
 
-    // 规则通道配置
+    // ADC规则通道配置
     ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_239Cycles5); // 规则通道采样周期239.5
     ADC_RegularChannelConfig(ADC1, ADC_Channel_11, 2, ADC_SampleTime_239Cycles5); // 规则通道采样周期239.5
     ADC_RegularChannelConfig(ADC1, ADC_Channel_12, 3, ADC_SampleTime_239Cycles5); // 规则通道采样周期239.5
 
-    // 注入通道配置
+    // ADC注入通道配置
     ADC_InjectedSequencerLengthConfig(ADC1, 1);
     ADC_InjectedChannelConfig(ADC1, ADC_Channel_12, 1, ADC_SampleTime_239Cycles5);
     ADC_ExternalTrigInjectedConvConfig(ADC1, ADC_ExternalTrigInjecConv_None); // 注入通道软件触发
     ADC_ITConfig(ADC1, ADC_IT_JEOC, ENABLE);                                  // 使能注入通道中断
 
     // DMA配置
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
     DMA_DeInit(DMA1_Channel1);
     DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&ADC1->DR;
     DMA_InitStructure.DMA_MemoryBaseAddr     = (uint32_t)ADC_ConvertedValue;
@@ -64,13 +63,18 @@ void ADC_Configuration(void)
     DMA_InitStructure.DMA_BufferSize         = ADC_CHANNEL_COUNT;
     DMA_InitStructure.DMA_PeripheralInc      = DMA_PeripheralInc_Disable;
     DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Enable;
-    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
-    DMA_InitStructure.DMA_MemoryDataSize     = DMA_MemoryDataSize_HalfWord;
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+    DMA_InitStructure.DMA_MemoryDataSize     = DMA_MemoryDataSize_Byte;
     DMA_InitStructure.DMA_Mode               = DMA_Mode_Circular;
     DMA_InitStructure.DMA_Priority           = DMA_Priority_High;
     DMA_InitStructure.DMA_M2M                = DMA_M2M_Disable;
     DMA_Init(DMA1_Channel1, &DMA_InitStructure);
+
+
+    // 使能ADC和DMA
+    ADC_Cmd(ADC1, ENABLE);         // 使能ADC1
     DMA_Cmd(DMA1_Channel1, ENABLE);
+    ADC_DMACmd(ADC1, ENABLE); // 使能ADC的DMA请求
 
     // 执行复位校准和ADC校准,必须等待校准结束
     ADC_StartCalibration(ADC1);
