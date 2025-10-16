@@ -30,10 +30,10 @@
 #define ADC_DMA_CHANNEL   DMA1_Channel1      // 使用的DMA通道
 
 #define ADC_CHANNEL_COUNT 3              // ADC通道数量
-volatile uint16_t ADC_ConvertedValue[3]; // ADC转换结果缓存
-volatile uint16_t ADC_Illumination;    // 光照强度采集值
-volatile uint16_t ADC_Temperature;     // 温度采集值
-volatile uint16_t ADC_Humidity;        // 湿度采集值
+extern  uint16_t ADC_ConvertedValue[ADC_CHANNEL_COUNT]; // ADC转换结果缓存
+extern  uint16_t ADC_Illumination;    // 光照强度采集值
+extern  uint16_t ADC_Temperature;     // 温度采集值
+extern  uint16_t ADC_Humidity;        // 湿度采集值
 
 void ADC_Config_Init(void);
 float ADC_GetVoltage_Illumination(uint8_t count);
