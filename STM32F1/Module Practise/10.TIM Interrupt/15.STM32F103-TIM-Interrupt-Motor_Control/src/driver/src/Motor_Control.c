@@ -32,9 +32,10 @@ void Motor_TIM_Init(void)
     TIM_OCInitStructure.TIM_Pulse       = 0;                      // 初始占空比为0%
     TIM_OCInitStructure.TIM_OCPolarity  = TIM_OCPolarity_High;    // 高电平有效
     TIM_OC1Init(MOTOR_A_TIM, &TIM_OCInitStructure);               // 配置通道1
-    TIM_OC1PreloadConfig(MOTOR_A_TIM, TIM_OCPreload_Enable);      // 使能预装载寄存器，在下一个更新事件时更新
 
-    TIM_Cmd(MOTOR_A_TIM, ENABLE); // 使能定时器
+    TIM_OC1PreloadConfig(MOTOR_A_TIM, TIM_OCPreload_Enable); // 使能CCR预装载寄存器，在下一个更新事件时更新
+    TIM_ARRPreloadConfig(MOTOR_A_TIM, ENABLE);               // 使能ARR预装载值
+    TIM_Cmd(MOTOR_A_TIM, ENABLE);                            // 使能定时器
 }
 
 void Motor_Init()
@@ -47,7 +48,7 @@ void Motor_Init()
 // speed: 0 ~ 100,值表示转速，
 void Motor_Set_Speed(uint8_t speed)
 {
-    if (speed > 100) speed = 100;         // 限制百分比范围
+    if (speed > 100) speed = 100;           // 限制百分比范围
     uint16_t duty = (uint16_t)(speed * 10); // 转换为0~1000的占空比
     TIM_SetCompare1(TIM1, duty);
 }
