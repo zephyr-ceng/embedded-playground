@@ -7,7 +7,7 @@ uint8_t RX_BUFFER[USART_RX_BUFFER_SIZE];
 uint8_t TX_BUFFER[USART_TX_BUFFER_SIZE];
 uint16_t received_length = 0; // 获取数据长度
 
-void USART_Config(uint32_t baudrate)
+void Serial_USART_Config(uint32_t baudrate)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure;
@@ -16,13 +16,13 @@ void USART_Config(uint32_t baudrate)
 
     // GPIO初始化
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-    GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_9;
-    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF_PP; // TX 复用推挽输出
+    GPIO_InitStructure.GPIO_Pin   = USART1_TX_PIN;
+    GPIO_InitStructure.GPIO_Mode  = USART1_TX_MODE; // TX 复用推挽输出
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-    GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_10;
-    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_IN_FLOATING; // RX 浮空输入
+    GPIO_InitStructure.GPIO_Pin   = USART1_RX_PIN;
+    GPIO_InitStructure.GPIO_Mode  = USART1_RX_MODE; // RX 浮空输入
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 
@@ -99,11 +99,11 @@ void USART1_IRQHandler(void)
 }
 
 /**
- * @brief  返回实际接收到的数据的长度
+ * @brief  接收在255字节中的不定长数据
  * @param  Buf: 用来存储实际接收到的数据
  * @retval len: 接收的数据长度
  * */
-uint16_t Get_ReviceData(uint8_t *Buf)
+uint16_t Serial_USART_ReceiveData(uint8_t *Buf)
 {
     uint16_t len = 0;
     if (received_length > 0)
@@ -116,13 +116,15 @@ uint16_t Get_ReviceData(uint8_t *Buf)
 }
 
 // 发送字符串函数
-void USART_SendString(char *str)
+void Serial_USART_SendString(char *str)
 {
-    uint16_t len = strlen(str);
-    if (len > 0 && str != NULL) {
-        DMA_Cmd(DMA1_Channel4, DISABLE);
-        memcpy(TX_BUFFER, str, len);
-        DMA_SetCurrDataCounter(DMA1_Channel4, len);
-        DMA_Cmd(DMA1_Channel4, ENABLE);
-    }
+    uint16_t len;
+    if (str == NULL) return;
+    len = strlen(str);
+    if (len == 0 || len > USART_TX_BUFFER_SIZE) return;
+
+    DMA_Cmd(DMA1_Channel4, DISABLE);
+    memcpy(TX_BUFFER, str, len);
+    DMA_SetCurrDataCounter(DMA1_Channel4, len);
+    DMA_Cmd(DMA1_Channel4, ENABLE);
 }
