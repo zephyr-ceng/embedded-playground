@@ -5,6 +5,8 @@
  *@date: 2025-11-13 15:29:55
  *@version: V1.0.0
 ****************/
+
+
 /* 系统头文件 */
 #include "stm32f10x.h"
 /* 外部引用文件 */
@@ -13,7 +15,7 @@
 #include "./Delay/MyDelay.h"
 #include "./OLED/OLED.h"
 
-void main()
+int main()
 {
     /* 模块初始化 */
     ESP8266_Init(115200);
@@ -27,4 +29,5 @@ void main()
     {
         
     }
+    return 0;
 }

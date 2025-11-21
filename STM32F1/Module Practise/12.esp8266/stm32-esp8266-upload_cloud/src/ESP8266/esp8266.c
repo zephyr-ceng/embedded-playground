@@ -36,6 +36,7 @@ void ESP8266_Reset()
     Delay_ms(500);
 }
 
+// 命令发送及返回指令确认
 bool ESP8266_SendCommand(char *command, char *reply1, char *reply2, uint16_t waitTime)
 {
     uint16_t len;
@@ -54,6 +55,7 @@ bool ESP8266_SendCommand(char *command, char *reply1, char *reply2, uint16_t wai
     return false; // 未收到期望回复
 }
 
+// 开启自动DHCP
 bool ESP8266_DHCP_CUR()
 {
     char cCmd[40];
@@ -80,6 +82,7 @@ bool ESP8266_ConnectTCP(char *ssid, char *password, char *serverAddr, uint16_t s
     return ESP8266_SendCommand(cCmd, "CONNECT", "ALREADY CONNECTED", 5000);
 }
 
+// 发送数据
 bool ESP8266_SendData(char *data)
 {
     char cCmd[128];
