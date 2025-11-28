@@ -5,7 +5,7 @@
 #include "stdio.h"
 #include "string.h"
 
-#define DEVICE_USART_NUM 3
+#define DEVICE_USART_NUM 1
 
 #if (DEVICE_USART_NUM == 1)
 
