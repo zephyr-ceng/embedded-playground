@@ -1,10 +1,13 @@
 #include "OLED_jiangxie.h"
-#include "OLED_Font_jiangxie.h"
+// #include "OLED_Font_jiangxie.h"
+#include "font.h"
 #include "i2c.h"
 #include "math.h"
 #include "stdlib.h"
 
 #define OLED_ADDRESS 0x78
+#define OLED_WIDTH 128
+#define OLED_HEIGHT 64
 
 // 向OLED发送数据
 void OLED_Send(uint8_t *data, uint8_t len)
@@ -23,7 +26,7 @@ void OLED_SendData(uint8_t data)
 // 向OLED发送指令
 void OLED_SendCmd(uint8_t cmd)
 {
-    static uint8_t sendBuffer[2] = {0};
+    static uint8_t sendBuffer[2] = {0x00, 0};
     sendBuffer[1] = cmd;
     OLED_Send(sendBuffer, 2);
 }
@@ -79,46 +82,49 @@ void OLED_Init(void)
     OLED_SendCmd(0xAF); /*开启显示 display ON*/
 }
 
-
 /********************************************** 直接通信 **********************************************/
-// 设置光标位置
-void OLED_SetCursor(uint8_t Y, uint8_t X)
+// 设置光标位置，此时GDDRAM地址未知，会随机显示内容
+void OLED_SetCursor(uint8_t X, uint8_t Page)
 {
-    OLED_WriteCommand(0xB0 | Y);                 // 设置Y位置
-    OLED_WriteCommand(0x10 | ((X & 0xF0) >> 4)); // 设置X位置高4位
-    OLED_WriteCommand(0x00 | (X & 0x0F));        // 设置X位置低4位
+    OLED_SendCmd(0x00 | (X & 0x0F));      // 设置低四位
+    OLED_SendCmd(0x10 | (X & 0xF0) >> 4); // 设置高四位
+    OLED_WriteCommand(0xB0 | Page);       // 设置页地址
 }
+
+
 
 void OLED_Clear(void)
 {
-    uint8_t i, j;
+    uint8_t i, j; // 分别表示列和页
     for (j = 0; j < 8; j++)
     {
-        OLED_SetCursor(j, 0);
+        OLED_SetCursor(j, 0); // 设置页地址
         for (i = 0; i < 128; i++)
         {
-            OLED_SendData(0x00);
+            OLED_SendData(0x00); // 写入0清屏
         }
     }
 }
+/**
+* @brief  单字符显示
+* @param  Line: 取值为0~4
+* @retval Column: 取值为128/8=16
+* */
 
 void OLED_ShowChar(uint8_t Line, uint8_t Column, char Char)
 {
     uint8_t i;
-    OLED_SetCursor((Line - 1) * 2, (Column - 1) * 8); // 设置光标位置在上半部分
+    OLED_SetCursor((Line - 1), (Column - 1) * 8); // 设置光标位置在上半部分
     for (i = 0; i < 8; i++)
     {
         OLED_SendData(OLED_F8x16[Char - ' '][i]); // 显示上半部分内容
     }
-    OLED_SetCursor((Line - 1) * 2 + 1, (Column - 1) * 8); // 设置光标位置在下半部分
+    OLED_SetCursor((Line - 1) + 1, (Column - 1) * 8); // 设置光标位置在下半部分
     for (i = 0; i < 8; i++)
     {
         OLED_SendData(OLED_F8x16[Char - ' '][i + 8]); // 显示下半部分内容
     }
 }
-
-
-
 
 /**
  * @brief  OLED显示字符串
@@ -237,10 +243,6 @@ void OLED_ShowBinNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Leng
     }
 }
 
-
 /********************************************** 带缓冲区的显示（操作缓存） **********************************************/
 // TODO: 缓冲区设置
 void OLED_NewFrame(void)
-
-
-
