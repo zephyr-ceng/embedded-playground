@@ -9,7 +9,9 @@
 
 uint8_t RX_BUFFER[USART_RX_BUFFER_SIZE];
 uint8_t TX_BUFFER[USART_TX_BUFFER_SIZE];
-uint16_t received_length = 0; // 获取数据长度
+volatile uint16_t received_length = 0; // 获取数据长度
+volatile uint8_t dma_tx_flag      = 1; // 标记 DMA 是否空闲
+
 /**
  * @brief  接收的注册回调函数
  * @param  usart_rx_callback_t： 符合这个类型的函数
@@ -90,6 +92,7 @@ void USART_Init_Config(uint32_t baudrate)
     DMA_Init(DMA1_Channel4, &DMA_InitStructure);
 
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+    
     // NVIC初始化
     NVIC_InitTypeDef NVIC_Init_Structure;
     NVIC_Init_Structure.NVIC_IRQChannel                   = USART1_IRQn;
@@ -98,6 +101,15 @@ void USART_Init_Config(uint32_t baudrate)
     NVIC_Init_Structure.NVIC_IRQChannelSubPriority        = 0;
     NVIC_Init(&NVIC_Init_Structure);
 
+    // 开启DMA TX 传输中断
+    NVIC_InitTypeDef NVIC_InitStructure_DMA;
+    NVIC_InitStructure_DMA.NVIC_IRQChannel                   = DMA1_Channel4_IRQn; // DMA1_Channel4 中断
+    NVIC_InitStructure_DMA.NVIC_IRQChannelPreemptionPriority = 1;                  // 可设置为比 USART 低
+    NVIC_InitStructure_DMA.NVIC_IRQChannelSubPriority        = 1;
+    NVIC_InitStructure_DMA.NVIC_IRQChannelCmd                = ENABLE;
+    NVIC_Init(&NVIC_InitStructure_DMA);
+
+    DMA_ITConfig(DMA1_Channel4, DMA_IT_TC, ENABLE);
     USART_DMACmd(USART1, USART_DMAReq_Rx | USART_DMAReq_Tx, ENABLE); // 使能rx tx
     USART_Cmd(USART1, ENABLE);
     DMA_Cmd(DMA1_Channel5, ENABLE);
@@ -119,6 +131,15 @@ void USART1_IRQHandler(void)
     }
 }
 
+void DMA1_Channel4_IRQHandler(void)
+{
+    if (DMA_GetITStatus(DMA1_IT_TC4) != RESET) {
+        DMA_ClearITPendingBit(DMA1_IT_TC4);
+        dma_tx_flag = 1;                 // 发送完成
+        DMA_Cmd(DMA1_Channel4, DISABLE); // 可选
+    }
+}
+
 /**
  * @brief  返回实际接收到的数据的长度
  * @param  Buf: 用来存储实际接收到的数据
@@ -126,13 +147,13 @@ void USART1_IRQHandler(void)
  * */
 uint16_t Get_ReviceData(uint8_t *Buf)
 {
-    uint16_t len = 0;
-    if (received_length > 0)
-        len = received_length;
-    memset(Buf, 0, USART_RX_BUFFER_SIZE); // 清除接收数据的Buf
-    memcpy(Buf, RX_BUFFER, len);
-    memset(RX_BUFFER, 0, USART_RX_BUFFER_SIZE); // 清除RX_BUFFER 防止上次的数据遗留
-    received_length = 0;                        // 清除传输长度
+    uint16_t len = received_length;
+    if (len > 0) {
+        memset(Buf, 0, USART_RX_BUFFER_SIZE); // 清除接收数据的Buf
+        memcpy(Buf, RX_BUFFER, len);
+        memset(RX_BUFFER, 0, USART_RX_BUFFER_SIZE); // 清除RX_BUFFER 防止上次的数据遗留
+        received_length = 0;                        // 清除传输长度
+    }
     return len;
 }
 
@@ -144,10 +165,12 @@ uint16_t Get_ReviceData(uint8_t *Buf)
  * */
 void USART_TransmitData(uint8_t *data, uint16_t length)
 {
-    if (length > 0 && data != NULL) {
-        DMA_Cmd(DMA1_Channel4, DISABLE);
-        memcpy(TX_BUFFER, data, length);
-        DMA_SetCurrDataCounter(DMA1_Channel4, length);
-        DMA_Cmd(DMA1_Channel4, ENABLE);
-    }
+    if (length == 0 || data == NULL) return;
+    while (!dma_tx_flag);
+    DMA_ClearFlag(DMA1_FLAG_TC4);
+    DMA_Cmd(DMA1_Channel4, DISABLE);
+    dma_tx_flag = 0;
+    memcpy(TX_BUFFER, data, length);
+    DMA_SetCurrDataCounter(DMA1_Channel4, length);
+    DMA_Cmd(DMA1_Channel4, ENABLE);
 }

@@ -6,6 +6,7 @@
  ****************/
 
 #include "stm32f10x.h"
+#include "string.h"
 
 /**
  * @brief  初始化USART1
@@ -71,7 +72,7 @@ void UART_SendByte(uint8_t data)
  * @param  str: 要发送的字符串
  * @retval null
  */
-void UART_SendString(const char *str)
+void UART_SendString(char *str)
 {
     while (*str) {
         UART_SendByte((uint8_t)*str);
@@ -103,18 +104,25 @@ uint8_t UART_ReceiveByte(void)
  * @param  stopChar: 停止接收的字符
  * @retval 接收到的字符串长度
  */
-uint16_t UART_ReceiveString(char *buffer, uint16_t maxLength)
+uint16_t UART_ReceiveString(uint8_t *buffer, uint16_t maxLength)
 {
     uint16_t length = 0;
+    uint8_t received;
+
     while (length < maxLength - 1) {
         while (USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET);
-        // read the received byte & 0xff 是防止接收数据位数溢出； 此处也可以替换为UART_ReceiveByte()函数
-        char received = (char)USART_ReceiveData(USART1) & 0xff; 
-        if (received == '\n' || received == '\r') { // Stop on the specified stop character
-            break;
+
+        received = USART_ReceiveData(USART1);
+
+        if (received == '\r' || received == '\n') {
+            if (length == 0)
+                continue; // 跳过开头的空换行
+            break;        // 结束一行
         }
+
         buffer[length++] = received;
     }
-    buffer[length] = '\0'; // Null-terminate the string
+
+    buffer[length] = '\0';
     return length;
 }

@@ -12,28 +12,23 @@
 #include "string.h"
 #include <stdio.h>
 
-char Buffer[255];
-char Msg[] = "Hello, STM32!";
+uint8_t Buffer[255];
+uint8_t msg[] = "Hello, STM32! it is USART!\n";
 
-uint8_t Buffer_Length = 0;
+uint8_t Length = 0;
 
 int main(void)
 {
     OLED_Init();
-    UART_Init();
+    SerialPort_USART_Init();
     while (1) {
-        // revice data from PC
-        Buffer_Length = UART_ReadAllFromBuffer(Buffer, 255); // 从接收缓冲区读取所有内容
-        OLED_ShowString(1, 1, Buffer);                       // 在OLED上显示接收到的内容
-        OLED_ShowNum(2, 1, Buffer_Length, 4);                // 在OLED上显示接收的字节数
-
-        
-        UART_send_str_IT(Buffer);
-        Buffer[0] = '\0'; // 清空缓冲区
-        Buffer_Length = 0; // 重置缓冲区长度
-        // send data to PC
-        UART_send_str_IT(Msg); // 发送字符串到串口
-        UART_send_str_IT("\n");
-        Delay_ms(500);         // 延时1秒
+        Length = SerialPort_USART_ReceiveData(Buffer,255);
+        if (Length > 0) {
+            OLED_Clear();
+            OLED_ShowNum(1,1,Length,4);
+            OLED_ShowString(2,1,(char *)Buffer);
+            SerialPort_USART_SendData(msg,sizeof(msg));
+            SerialPort_USART_SendData(Buffer,sizeof(Buffer));
+        }
     }
 }
