@@ -1,5 +1,5 @@
 version: "4.1"
-name: 1.STM32F103-GPIO
+name: STM32F103-GPIO-KEY
 type: ARM
 deviceName: STM32F103C8
 packDir: .pack/Keil/STM32F1xx_DFP.2.3.0
@@ -14,7 +14,7 @@ dependenceList: []
 outDir: build
 miscInfo:
   lastBuildTime: 1608695075742
-  uid: 6c6cd0d4074ef3203ebeddbea23c7b8e
+  uid: 7e7ac3fb174c94c06d24811e64a5a06c
 targets:
   Debug:
     cppPreprocessAttrs:

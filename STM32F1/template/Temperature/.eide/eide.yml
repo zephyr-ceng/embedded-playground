@@ -1,5 +1,5 @@
 version: "4.1"
-name: 1.STM32F103-GPIO
+name: Temperature
 type: ARM
 deviceName: STM32F103C8
 packDir: .pack/Keil/STM32F1xx_DFP.2.3.0
@@ -14,7 +14,7 @@ dependenceList: []
 outDir: build
 miscInfo:
   lastBuildTime: 1608695075742
-  uid: 6c6cd0d4074ef3203ebeddbea23c7b8e
+  uid: 5f3842baf34cacb2a16601c52a5bfb7d
 targets:
   Debug:
     cppPreprocessAttrs:
@@ -36,10 +36,8 @@ targets:
       - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_crc.c
       - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_dac.c
       - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_dbgmcu.c
-      - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c
       - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.c
       - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.c
-      - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_i2c.c
       - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_iwdg.c
       - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c
       - hal/STM32F10x_StdPeriph_Driver/src/stm32f10x_rtc.c
