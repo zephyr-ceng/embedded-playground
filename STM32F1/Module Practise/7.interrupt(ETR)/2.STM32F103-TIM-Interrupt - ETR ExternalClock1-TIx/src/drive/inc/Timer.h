@@ -2,6 +2,6 @@
 #define __Timer_H__
 
 void Timer_Init(void);
-uint16_t Get_Value();
+int64_t Get_Overflow_value(void);
 
 #endif // !__Timer_H__

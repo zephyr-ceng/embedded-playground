@@ -32,7 +32,8 @@ void Timer_Init(void)
     TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
 
 
-    TIM_ETRClockMode1Config(TIM1, TIM_ExtTRGPSC_OFF,
+    // 使用 ETR 外部时钟模式 2，通过 SMCR.ECE 让 ETR 直接驱动 TIM1 计数器。
+    TIM_ETRClockMode2Config(TIM1, TIM_ExtTRGPSC_OFF,
                             TIM_ExtTRGPolarity_Inverted, 0);
 
     // 设置计数器初值，然后启动 TIM1；这里设置为 65530，便于观察即将溢出的计数过程。
@@ -48,20 +49,15 @@ uint16_t Get_Value(void)
 
 /*
  * 拓展说明：
- * 1. ETR 是 External Trigger 的缩写。在本实验中，ETR 不用于触发一次性动作，
- *    而是通过外部时钟模式 1 直接作为 TIM1 计数器的时钟输入。
+ * 1. ETR 是 External Trigger 的缩写。模式 1 和模式 2 都会先经过 ETR 的
+ *    极性检测、滤波和预分频，但进入计数器的内部路径不同：
+ *    - 模式 1：ETRF -> 触发输入选择器（TS 选择 ETRF，输出 TRGI）-> 从模式控制器（SMS=External1）-> TIM1_CNT；
+ *    - 模式 2：ETRF -> ETR 外部时钟输入（SMCR.ECE=1）-> TIM1_CNT，不经过触发输入选择器和从模式控制器。
+ *    因此，本例使用模式 2 时，每个有效下降沿直接使 TIM1_CNT 加 1。
  *
- * 2. 当前配置的信号路径为：
- *    PA12 -> ETR 输入 -> 极性检测 -> ETRF -> 外部时钟模式 1 -> TIM1_CNT。
- *    因此每个有效下降沿使 TIM1_CNT 增加 1，OLED 读取的就是这个硬件计数器。
+ * 2. 如果外部脉冲较快，可以使用 TIM_ExtTRGPSC_DIV2、DIV4 或 DIV8 分频，
+ *    也可以设置 ETR 滤波值 0x01~0x0F 来抑制窄脉冲和部分噪声。
  *
- * 3. 如果外部脉冲频率较高，可以使用 TIM_ExtTRGPSC_DIV2、DIV4 或 DIV8，
- *    让多个外部脉冲合并为一个计数；也可以将 ETR 滤波值设置为 0x01~0x0F，
- *    用于抑制窄脉冲和部分噪声。
- *
- * 4. 机械按键会产生抖动，一次按下可能产生多个下降沿。实际应用中应增加 RC
- *    硬件消抖、施密特触发器，或使用 GPIO/定时器捕获后进行软件消抖。
- *
- * 5. 当前自动重装载值为 0xFFFF，计数达到 65535 后再次收到有效脉冲会回到 0。
- *    如果需要统计更长时间，可以在更新事件中断中扩展溢出次数，组合成 32 位计数。
+ * 3. 机械按键会抖动，一次按下可能产生多个下降沿；实际应用应增加硬件或软件消抖。
+ *    当前计数器溢出后会从 0 重新计数，如需更长计数范围，可在更新中断中扩展溢出次数。
  */

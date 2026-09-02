@@ -57,8 +57,24 @@ stm32f1x_64KB_flash.ld            链接脚本
 
 - 外部输入：`GPIOA Pin 12`（TIM1 ETR）。
 - 定时器：`TIM1`，无预分频、向上计数。
+- 外部时钟：使用 ETR 外部时钟模式 2（`TIM_ETRClockMode2Config`），通过 `SMCR.ECE` 使能 ETR 直接作为计数时钟。
+- 输入极性：反相，PA12 的有效下降沿使 `TIM1_CNT` 加 1。
+- ETR 滤波：关闭（滤波值为 `0`）；ETR 预分频：关闭（`TIM_ExtTRGPSC_OFF`）。
 - 自动重装载值：`65535`（代码配置为 `0xFFFF`）。
 - 显示设备：OLED，由 `OLED.c` 提供驱动。
+
+模式 2 的信号路径为：
+
+```text
+PA12/TIM1_ETR
+  -> ETR 极性检测与滤波
+  -> ETR 预分频器
+  -> ETR 外部时钟模式 2（SMCR.ECE=1）
+  -> TIM1_CNT
+```
+
+该模式不通过从模式控制器的 `SMS=外部时钟模式 1` 和 `TS=ETRF` 选择触发源；
+如需使用外部时钟模式 1，应改用 `TIM_ETRClockMode1Config`。
 
 ## 构建与下载
 
